@@ -12,6 +12,12 @@ apiRouter.get('/health', (req, res, next) => {
   });
 });
 
-// place your routers here
+// ROUTER: /api/users
+const usersRouter = require('./users');
+router.use('/users', usersRouter);
+
+// ROUTER: /api/cars
+const carsRouter = require('./cars');
+router.use('/cars', carsRouter);
 
 module.exports = apiRouter;
