@@ -7,7 +7,6 @@ const {
 async function buildTables() {
   try {
     client.connect();
-isAdmin BOOLEAN DEFAULT false
     // drop tables in correct order
 
     // build tables in correct order
@@ -24,6 +23,7 @@ async function createInitialProducts() {
       const productsToCreate = [
         {
           title: "2023 Tesla Model S",
+          imageurl: "https://cdn.motor1.com/images/mgl/VR6Al/s1/4x3/tesla-model-s-plaid-blue.webp",
           year: "2023",
           make: "Tesla",
           model: "Model S Plaid",
@@ -31,8 +31,38 @@ async function createInitialProducts() {
           color: "Blue",
           price: "$127,590",
           inventory: "Available",
-      }]
+      },
+      {
+          title: "2023 Tesla Model Y",
+          imageurl: "https://cdn.motor1.com/images/mgl/pPoyY/s1/tesla-model-y-white-driving.jpg",
+          year: "2023",
+          make: "Tesla",
+          model: "Model Y Long-Range",
+          description: "Model Y provides maximum versatility—able to carry 7 passengers and their cargo. Each second row seat folds flat independently, creating flexible storage for skis, furniture, luggage and more. The liftgate opens to a low trunk floor that makes loading and unloading easy and quick.",
+          color: "White",
+          price: "$58,190",
+          inventory: "Available",
+    },
+      {
+          title: "2023 Tesla Model Y",
+          imageurl: "https://www.motortrend.com/uploads/sites/5/2020/05/2020-Tesla-Model-Y-Dual-Motor-Performance-AWD-front-three-quarter-6.jpg",
+          year: "2023",
+          make: "Tesla",
+          model: "Model Y Performance",
+          description: "With all the features of the Model Y Long-Range, the performance version has an increased top speed from 135mph to 155mph, 21in wheels, performance brakes, lowered suspension, and alumium alloy pedals. The performance version can go from 0-60mph at an astonishing rate of 3.5seconds, all while still getting 303miles of range on a full charge!",
+          color: "Gray",
+          price: "$62,190",
+          inventory: "Available",
+    },
+  ]
+
+   const products = await Promise.all (
+    productsToCreate.map(product => createProduct(product))
+  );
+  console.log("Products that were created:", products);
+  console.log('Finished making products');
   } catch (error) {
+    console.error(error);
     throw error;
   }
 }
