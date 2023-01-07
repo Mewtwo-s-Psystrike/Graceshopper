@@ -27,6 +27,12 @@ async function buildTables() {
   CREATE TABLE cars (
       id SERIAL PRIMARY KEY,
       name VARCHAR(255) UNIQUE NOT NULL,
+      make VARCHAR(255) UNIQUE NOT NULL,
+      model VARCHAR(255) UNIQUE NOT NULL,
+      year TEXT NOT NULL,
+      color TEXT NOT NULL,
+      price TEXT NOT NULL,
+      inventory TEXT NOT NULL,
       description TEXT NOT NULL
   );
 
