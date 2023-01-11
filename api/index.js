@@ -12,12 +12,19 @@ apiRouter.get('/health', (req, res, next) => {
   });
 });
 
-// ROUTER: /api/users
-const usersRouter = require('./users');
-router.use('/users', usersRouter);
+// // ROUTER: /api/users
+// const usersRouter = require('./users');
+// router.use('/users', usersRouter);
 
-// ROUTER: /api/cars
-const carsRouter = require('./cars');
-router.use('/cars', carsRouter);
+// // ROUTER: /api/cars
+// const carsRouter = require('./cars');
+// router.use('/cars', carsRouter);
+
+// router.get('*', function(req, res){
+//   res.status(404);
+//   res.send({
+//       message: "404 page not found"
+//   })
+// })
 
 module.exports = apiRouter;
