@@ -1,15 +1,35 @@
 const {
   client,
+  user,
+  models
   // declare your model imports here
   // for example, User
 } = require('./');
 
 async function buildTables() {
   try {
-    client.connect();
-    // drop tables in correct order
+    await client.query(`
 
-    // build tables in correct order
+    CREATE TABLE users (
+        id SERIAL PRIMARY KEY,
+        username VARCHAR(255) UNIQUE NOT NULL,
+        password VARCHAR(255) NOT NULL
+    );
+  
+    CREATE TABLE cars (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(255) UNIQUE NOT NULL,
+        make VARCHAR(255) UNIQUE NOT NULL,
+        model VARCHAR(255) UNIQUE NOT NULL,
+        year TEXT NOT NULL,
+        color TEXT NOT NULL,
+        price TEXT NOT NULL,
+        inventory TEXT NOT NULL,
+        description TEXT NOT NULL
+    );
+    `)
+  
+    console.log("Finishing creating tables");
   } catch (error) {
     throw error;
   }
