@@ -1,20 +1,20 @@
-import { Route, Routes, Link } from "react-router-dom";
-import React, { useEffect, useState } from "react";
-import { Home } from "./components/index";
-// import {} from "./api/api"
+import React, { useState, useEffect } from 'react';
+import { Route, BrowserRouter as Routes, useNavigate } from 'react-router-dom';
+
+
+
+
 
 const App = () => {
-  return (
-    <div>
-      <div>hello world</div>
-      
 
+    return (      
+            <div className="app-container">
+              <h1>Hello, World! This is a quick test to load homepage</h1>
 
-      <Route exact path="/">
-        
-      </Route>
-    </div>
-  );
-};
+            </div>
+    
+    )
+}
+
 
 export default App;
