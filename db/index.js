@@ -1,9 +1,5 @@
-// const client = require('./client');
-// const models = require('./models');
-// const user = require('./user');
-
-// module.exports = {
-//   client,
-//   user,
-//   ...models,
-// };
+module.exports = {
+    ...require('./users'),
+    ...require('./products'),
+    ...require('./cart')
+};

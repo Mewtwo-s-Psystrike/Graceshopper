@@ -9,14 +9,15 @@ const {
 async function buildTables() {
   try {
     await client.query(`
-
     CREATE TABLE users (
         id SERIAL PRIMARY KEY,
         username VARCHAR(255) UNIQUE NOT NULL,
-        password VARCHAR(255) NOT NULL
-    );
-  
-    CREATE TABLE cars (
+        password VARCHAR(255) NOT NULL,
+        "isAdmin" BOOLEAN DEFAULT false
+    );`)
+
+    await client.query(`
+    CREATE TABLE products (
         id SERIAL PRIMARY KEY,
         name VARCHAR(255) UNIQUE NOT NULL,
         make VARCHAR(255) UNIQUE NOT NULL,
@@ -26,8 +27,15 @@ async function buildTables() {
         price TEXT NOT NULL,
         inventory TEXT NOT NULL,
         description TEXT NOT NULL
-    );
-    `)
+    );`)
+
+    await client.query(`
+    CREATE TABLE cart_products(
+      id SERIAL PRIMARY KEY,
+      "cartId" INTEGER REFERENCES users(id),
+      "productId" INTEGER REFERENCES products(id),
+      qty INTEGER
+    );`);
   
     console.log("Finishing creating tables");
   } catch (error) {
@@ -47,8 +55,6 @@ async function createInitialUsers() {
     ]
     const users = await Promise.all(usersToCreate.map(createUser))
 
-    console.log("Users created:")
-    console.log(users)
     console.log("Finished creating users!")
   } catch (error) {
     console.error("Error creating users!")
@@ -109,8 +115,25 @@ async function createInitialProducts() {
 }
 
 
+async function rebuildDB() {
+  try {
+    await client.connect();
+    await dropTables();
+    await createTables();
+    await createInitialUsers();
+    await createInitialProducts();
+  }
+  catch (error) {
+    console.log(error)
+    throw error;
+  }
+}
 
-buildTables()
-  .then(populateInitialData)
+rebuildDB()
   .catch(console.error)
   .finally(() => client.end());
+
+module.exports = {
+  dropTables,
+  createTables,
+};
