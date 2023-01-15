@@ -6,7 +6,7 @@ const {
   // for example, User
 } = require('./');
 
-async function buildTables() {
+async function dropTables() {
   try {
     await client.query(`
     CREATE TABLE users (
