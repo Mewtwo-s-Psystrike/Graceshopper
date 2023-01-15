@@ -1,30 +1,61 @@
-const apiRouter = require('express').Router();
+const express = require('express');
+const router = express.Router();
+const jwt = require('jsonwebtoken');
+const { JWT_SECRET } = process.env;
+const { getUserById } = require('../db/users');
 
-apiRouter.get('/', (req, res, next) => {
+router.use(async (req, res, next) => {
+  const prefix = 'Bearer ';
+  const auth = req.header('Authorization');
+
+
+  if (!auth) {
+    next();
+  } else if (auth.startsWith(prefix)) {
+    const token = auth.slice(prefix.length);
+    try {
+      const { id } = jwt.verify(token, JWT_SECRET);
+      if (id) {
+        req.user = await getUserById(id);
+        next();
+      }
+    } catch ({ name, message }) {
+      next({ name, message });
+    }
+  } else {
+    next({
+      name: 'AuthorizationHeaderError',
+      message: `Authorization token must start with ${prefix}`,
+    });
+  }
+});
+
+router.get('/health', async (req, res) => {
   res.send({
-    message: 'API is under construction!',
+    message: 'All is well',
   });
 });
 
-apiRouter.get('/health', (req, res, next) => {
-  res.send({
-    healthy: true,
+const usersRouter = require('./users');
+router.use('/users', usersRouter);
+
+const productsRouter = require('./products');
+router.use('/products', productsRouter);
+
+const cartRouter = require('./cart');
+router.use('/cart', cartRouter);
+
+router.get('*', (req, res) => {
+  res.status(404).send({
+    message: 'Page not found!',
   });
 });
 
-// // ROUTER: /api/users
-// const usersRouter = require('./users');
-// router.use('/users', usersRouter);
+router.use((error, req, res, next) => {
+  res.send({
+    message: error,
+  });
+});
 
-// // ROUTER: /api/cars
-// const carsRouter = require('./cars');
-// router.use('/cars', carsRouter);
-
-// router.get('*', function(req, res){
-//   res.status(404);
-//   res.send({
-//       message: "404 page not found"
-//   })
-// })
 
 module.exports = apiRouter;
