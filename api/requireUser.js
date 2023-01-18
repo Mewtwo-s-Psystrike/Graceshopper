@@ -1,4 +1,4 @@
-const client = require("./client");
+const client = require("../db/client");
 
 function requireUser(req, res, next) {    
     if (!req.user) {
@@ -10,6 +10,5 @@ function requireUser(req, res, next) {
       next();  
   } 
 
-module.exports = {
-    requireUser,
-}
+
+module.exports = requireUser;

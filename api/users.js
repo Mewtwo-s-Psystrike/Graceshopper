@@ -2,7 +2,8 @@ const express = require('express');
 const usersRouter = express.Router();
 const jwt = require('jsonwebtoken');
 
-const { createUser, getUser, requireUser, getUserById } = require('../db');
+const { createUser, getUser, getUserById } = require('../db');
+const { requireUser } = require('../api');
 
 usersRouter.post('/login', async (req, res, next) => {
     const {username, password} = req.body
