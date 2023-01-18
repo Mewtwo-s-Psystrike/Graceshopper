@@ -1,9 +1,5 @@
 const {
-  client,
-  user,
-  models
-  // declare your model imports here
-  // for example, User
+  client
 } = require('./');
 
 async function dropTables() {
@@ -19,14 +15,15 @@ async function dropTables() {
     await client.query(`
     CREATE TABLE products (
         id SERIAL PRIMARY KEY,
-        name VARCHAR(255) UNIQUE NOT NULL,
+        title VARCHAR(255) UNIQUE NOT NULL,
+        imageurl TEXT NOT NULL,
+        year TEXT NOT NULL,
         make VARCHAR(255) UNIQUE NOT NULL,
         model VARCHAR(255) UNIQUE NOT NULL,
-        year TEXT NOT NULL,
+        description TEXT NOT NULL
         color TEXT NOT NULL,
         price TEXT NOT NULL,
         inventory TEXT NOT NULL,
-        description TEXT NOT NULL
     );`)
 
     await client.query(`
