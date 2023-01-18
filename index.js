@@ -11,6 +11,11 @@ app.use(express.json());
 
 app.use('/api', router);
 
+app.use((err, req, res, next) => {
+    console.error(err);
+    res.status(500).send({ message: 'Something went wrong' });
+  });
+
 const PORT = process.env.PORT || 5432;
 
 const client = require('./db/client');

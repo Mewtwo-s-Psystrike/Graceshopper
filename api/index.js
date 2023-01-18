@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = process.env;
-const { getUserById } = require('../db/users');
+const { getUserById } = require('../db/user');
 
 router.use(async (req, res, next) => {
   const prefix = 'Bearer ';

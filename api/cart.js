@@ -29,7 +29,7 @@ cartRouter.delete("/:cartProductId", requireUser, async (req, res, next) => {
       res.status(403).send({
         error: 'UserCannotDeleteProduct',
         name: 'User cannot delete product',
-        message,
+        message: 'User cannot delete product',
       });
     } else {
       const removeCartProduct = await destroyCartProduct(req.user.id, cartProductId);
@@ -62,7 +62,7 @@ cartRouter.patch('/:cartProductId', requireUser, async (req, res, next) => {
       res.send({
         error: 'CartProductDoesNotExists',
         title: 'Cart Product does not exists',
-        message: ProductNotFoundError(cartProductId),
+        message: 'Cart Product does not exist, please try again.',
       });
     } else {
       const updateCartQty = await updateCartProduct(req.user.id, updateFields);
