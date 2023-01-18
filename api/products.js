@@ -1,7 +1,7 @@
 const express = require('express');
 const productsRouter = express.Router();
 const {getAllProducts, createProduct, getProductByTitle, getProductById, updateProduct, deleteProduct} = require(`../db`);
-const { requireUser } = require(`./utils`);
+const { requireUser } = require(`./requireUser`);
 
 
 productsRouter.get('/', async (req, res, next) => { 

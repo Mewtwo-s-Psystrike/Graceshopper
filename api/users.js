@@ -74,7 +74,7 @@ usersRouter.get('/me', requireUser, async (req, res, next) => {
     const auth = req.headers['Authorization'];
 
     if (!auth) {
-        next();
+        next(new Error('Authorization header missing'));
       }
 
     if (auth.startsWith(prefix)) {
@@ -86,11 +86,11 @@ usersRouter.get('/me', requireUser, async (req, res, next) => {
         res.send(me)
       } catch (error) {
         console.log("Error in the user auth route")
-        throw error;
+        next(error);
       }
     }
 });
 
   
 
-module.exports = usersRouter;
+module.exports = {usersRouter};
