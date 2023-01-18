@@ -2,7 +2,8 @@ const express = require('express');
 const usersRouter = express.Router();
 const jwt = require('jsonwebtoken');
 
-const { createUser, getUser, getUserById, getUserByUsername } = require('../db');
+const { createUser, getUser, requireUser, getUserById } = require('../db');
+
 usersRouter.post('/login', async (req, res, next) => {
     const {username, password} = req.body
 
@@ -13,7 +14,7 @@ usersRouter.post('/login', async (req, res, next) => {
         });
       }
       try {
-        const user = await getUserByUsername(username);
+        const user = await getUser(username);
         console.log("user:", user)
     
         if (user.password == password) {
@@ -26,8 +27,8 @@ usersRouter.post('/login', async (req, res, next) => {
           });
         }
       } catch(error) {
-        console.log(error);
-        next(error);
+        console.log("Error in the login route");
+        throw error;
       }
     });
 
@@ -36,7 +37,7 @@ usersRouter.post('/register', async (req, res, next) => {
     const { username, password} = req.body;
   
     try {
-      const _user = await getUserByUsername(username);
+      const _user = await getUser(username);
   
       if (_user) {
         next({
@@ -67,7 +68,7 @@ usersRouter.post('/register', async (req, res, next) => {
 });
 
 // GET /api/users/me
-usersRouter.get('/me', async (req, res, next) => {
+usersRouter.get('/me', requireUser, async (req, res, next) => {
     const prefix = 'Bearer '
     const auth = req.headers['Authorization'];
 
@@ -82,12 +83,13 @@ usersRouter.get('/me', async (req, res, next) => {
         const { id } = jwt.verify(token, process.env.JWT_SECRET);
         const me = await getUserById(id);
         res.send(me)
-        next();
       } catch (error) {
-            console.log(error)
+        console.log("Error in the user auth route")
+        throw error;
       }
     }
 });
+
   
 
 module.exports = usersRouter;

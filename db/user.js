@@ -23,50 +23,38 @@ async function createUser({ username, password }) {
 async function getUser({ username, password }) {
   if (!username || !password) return
   try {
-    const user = await getUserByUsername(username);
+    const { rows: [user] } = await client.query(`
+    SELECT username
+    FROM users
+    WHERE username=$1;
+    `, [username]);
     const hashedPassword = user.password
     const passwordsMatch = await bcrypt.compare(password, hashedPassword);
     if (passwordsMatch) {
-      delete user.password;
       return user;
     } else {
       return null;
     }
   } catch (error) {
-    console.log(error)
-    throw error;
+    console.log("Error getting user");
   }
 }
 
 async function getUserById(userId) {
   try {
     const { rows: [user] } = await client.query (`
-    SELECT *
+    SELECT username
     FROM users
     WHERE id = ${userId}
     `);
     if (!user) {
       return null
     } else {
-      delete user.password;
       return user;
     }
   } catch(error) {
-    console.log("Error with getting user by id");
-  }
-}
-
-async function getUserByUsername(userName) {
-  try {
-    const { rows: [user] } = await client.query(`
-    SELECT *
-    FROM users
-    WHERE username=$1;
-    `, [userName]);
-
-    return user;
-  } catch (error) {
-    console.log("Error getting user by username");
+    console.log("Error with getting user by id", error);
+    throw error;
   }
 }
 
@@ -74,5 +62,4 @@ module.exports = {
   createUser,
   getUser,
   getUserById,
-  getUserByUsername,
 }
