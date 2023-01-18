@@ -48,13 +48,12 @@ async function getAllProducts() {
        
        INSERT INTO products (title, imageurl, year, make, model, description, color, price, inventory)
        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
-       ON CONFLICT (title) DO NOTHING
        RETURNING *;
     `, [title, imageurl, year, make, model, description, color, price, inventory]); 
     
         return product;
-    } catch {
-        console.log("ERROR IN createProduct ------->>>> ERROR", error)
+    } catch(error) {
+        throw error
     }  
   }
 

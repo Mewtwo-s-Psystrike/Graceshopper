@@ -4,6 +4,12 @@ const jwt = require('jsonwebtoken');
 const JWT_SECRET  = process.env.JWT_SECRET;
 const { getUserById } = require('../db/user');
 
+router.get('/health', async (req, res) => {
+  res.send({
+    message: 'All is well',
+  });
+});
+
 router.use(async (req, res, next) => {
   const prefix = 'Bearer ';
   const auth = req.header('Authorization');
@@ -30,11 +36,6 @@ router.use(async (req, res, next) => {
   }
 });
 
-router.get('/health', async (req, res) => {
-  res.send({
-    message: 'All is well',
-  });
-});
 
 const usersRouter = require('./users');
 router.use('/users', usersRouter);
@@ -48,12 +49,6 @@ router.use('/cart', cartRouter);
 router.get('*', (req, res) => {
   res.status(404).send({
     message: 'Page not found!',
-  });
-});
-
-router.use((error, req, res, next) => {
-  res.send({
-    message: error,
   });
 });
 

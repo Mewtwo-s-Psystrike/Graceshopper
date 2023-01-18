@@ -16,12 +16,15 @@ app.use((err, req, res, next) => {
     res.status(500).send({ message: 'Something went wrong' });
   });
 
+
+
 const PORT = process.env.PORT || 5432;
 
 const client = require('./db/client');
 client.connect();
 
-
 app.listen(PORT, () => {
     console.log(`Server is up and running on port ${PORT}`)
 })
+
+module.exports = app

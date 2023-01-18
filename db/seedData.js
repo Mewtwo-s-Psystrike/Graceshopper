@@ -1,9 +1,26 @@
-const {
-  client
-} = require('./');
+const client = require('./client');
+const {createUser, createProduct} = require('./index')
 
-async function dropTables() {
+///drop tables
+async function dropTables(){
   try {
+    console.log('beginning to drop tables');
+
+    await client.query(`
+    DROP TABLE IF EXISTS cart_products;
+    DROP TABLE IF EXISTS products;
+    DROP TABLE IF EXISTS users;
+    `);
+
+    console.log('finished dropping tables');
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+async function createTables() {
+  try {
+    console.log('starting to create tables');
     await client.query(`
     CREATE TABLE users (
         id SERIAL PRIMARY KEY,
@@ -15,15 +32,15 @@ async function dropTables() {
     await client.query(`
     CREATE TABLE products (
         id SERIAL PRIMARY KEY,
-        title VARCHAR(255) UNIQUE NOT NULL,
+        title TEXT NOT NULL,
         imageurl TEXT NOT NULL,
         year TEXT NOT NULL,
-        make VARCHAR(255) UNIQUE NOT NULL,
-        model VARCHAR(255) UNIQUE NOT NULL,
-        description TEXT NOT NULL
+        make TEXT NOT NULL,
+        model TEXT NOT NULL,
+        description TEXT NOT NULL,
         color TEXT NOT NULL,
         price TEXT NOT NULL,
-        inventory TEXT NOT NULL,
+        inventory TEXT NOT NULL
     );`)
 
     await client.query(`
@@ -51,6 +68,7 @@ async function createInitialUsers() {
       { username: "nick", password: "nick1234", isAdmin: true },
     ]
     const users = await Promise.all(usersToCreate.map(createUser))
+    console.log('initial users', users);
 
     console.log("Finished creating users!")
   } catch (error) {
@@ -113,17 +131,11 @@ async function createInitialProducts() {
 
 
 async function rebuildDB() {
-  try {
     await client.connect();
     await dropTables();
     await createTables();
     await createInitialUsers();
     await createInitialProducts();
-  }
-  catch (error) {
-    console.log(error)
-    throw error;
-  }
 }
 
 rebuildDB()
