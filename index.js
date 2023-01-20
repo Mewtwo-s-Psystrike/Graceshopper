@@ -18,7 +18,7 @@ app.use((err, req, res, next) => {
 
 
 
-const PORT = process.env.PORT || 5432;
+const PORT = process.env.PORT || 3200;
 
 const client = require('./db/client');
 client.connect();
