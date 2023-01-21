@@ -107,4 +107,23 @@ productsRouter.get('/', async (req, res, next) => {
     }
   });
 
+  productsRouter.delete('/:productId', requireUser, async (req, res, next) => {
+    const { productId } = req.params;
+    try {
+      const _product = await getProductById(productId);
+      if (!_product) {
+        res.status(403).send({
+          error: 'UserCannotDeleteRoutine',
+          name: 'User cannot delete routine',
+          message: UnauthorizedDeleteError(req.user.isAdmin, _product.title),
+        });
+      } else {
+        const removeProduct = await deleteProduct(_product.id);
+        res.send(removeProduct);
+      }
+    } catch (err) {
+      next(err);
+    }
+  });
+  
   module.exports = productsRouter
