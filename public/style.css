@@ -1,15 +1,32 @@
-.navit{
-    display: flex;
-    justify-content: space-between;
-    position: inherit;
-    background-color: red;
-    font-size: 3rem;
-    width: 100vw;
-    height: 4rem;
-    margin: 0;
+*{
+    box-sizing: border-box;
 }
 
-.home{
+a:visited {
+    color: black;  
+    text-decoration: none;
+}
+
+.graceautos{
     display: flex;
-    font-size: 10rem;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 1.5rem;
+    margin: .5rem;
+}
+.nav-seperation{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: .5rem;
+}
+
+.dropdown{
+    display: flex;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    justify-content: space-between;
+    margin-right: 2rem;
+    font-size: 1.2rem;
+    width: 12rem;
 }
