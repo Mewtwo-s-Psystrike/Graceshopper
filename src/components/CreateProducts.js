@@ -1,168 +1,185 @@
-
 import React, { useState } from "react";
-import { createProduct } from "..api/api";
+import { createProduct } from "../api/api";
 import { useNavigate } from "react-router-dom";
 
 const CreateProduct = ({ token, products, setProducts }) => {
+  const [title, setTitle] = useState("");
+  const [year, setYear] = useState("");
+  const [make, setMake] = useState("");
+  const [model, setModel] = useState("");
+  const [description, setDescription] = useState("");
+  const [color, setColor] = useState("");
+  const [price, setPrice] = useState("");
+  const [inventory, setInventory] = useState("");
+  const navigate = useNavigate();
 
-    const [title, setTitle] = useState("");
-    const [year, setYear] = useState("");
-    const [make, setMake] = useState("");
-    const [model, setModel] = useState("");
-    const [description, setDescription] = useState("");
-    const [color, setColor] = useState("");
-    const [price, setPrice] = useState("");
-    const [inventory, setInventory] = useState("");
-    const navigate = useNavigate();
-    
-    const onFormSubmit = async (event) => {
-        event.preventDefault();
-    
-        const newProduct =  {title, year, make, model, description, color, price, inventory}
-    
-        try {
-            if (!products.find((product) => product.title === newProduct.title)) {
-                const result = await createProduct(token, newProduct);
-                setProducts([...products, result]);
-                setTitle("")
-                setYear("")
-                setMake("")
-                setModel("")
-                setDescription("")
-                setColor("")
-                setPrice("")
-                setInventory("")
-                navigate("/products")   
-            } else {
-                alert("product already exists")
-            }
-        } catch (error) {
-            console.error("error creating product")
-        }
+  const onFormSubmit = async (event) => {
+    event.preventDefault();
+
+    const newProduct = {
+      title,
+      year,
+      make,
+      model,
+      description,
+      color,
+      price,
+      inventory,
     };
-}
 
-return(<>
-    <h2 className="product-title">CREATE NEW PRODUCT</h2>
-    <form className="product-form" onSubmit={onFormSubmit}>
+    try {
+      if (!products.find((product) => product.title === newProduct.title)) {
+        const result = await createProduct(token, newProduct);
+        setProducts([...products, result]);
+        setTitle("");
+        setYear("");
+        setMake("");
+        setModel("");
+        setDescription("");
+        setColor("");
+        setPrice("");
+        setInventory("");
+        navigate("/products");
+      } else {
+        alert("product already exists");
+      }
+    } catch (error) {
+      console.error("error creating product");
+    }
+  };
 
-        <label htmlFor="title" className="product-label">
-            PRODUCT TITLE
-        </label>
-        <input 
+  return (
+    <>
+      <form class="row g-3">
+        <div class="col-md-6">
+          <label htmlFor="title" className="product-label">
+            Title
+          </label>
+          <input
             type="text"
-            placeholder="Product name"
-            className="forminput"
+            placeholder="Product Title"
+            class="form-control"
+            id="inputEmail4"
             autoComplete="off"
             value={title}
             onChange={(event) => {
-               setTitle(event.target.value)
+              setTitle(event.target.value);
             }}
-        ></input>
+          ></input>
+        </div>
 
-<label htmlFor="year" className="product-label">
-            PRODUCT YEAR
-        </label>
-        <input 
+        <div class="col-md-6">
+          <label htmlFor="year" className="product-label">
+            Year
+          </label>
+          <input
             type="text"
             placeholder="Product year"
-            className="forminput"
+            class="form-control"
+            id="inputPassword4"
             autoComplete="off"
             value={year}
             onChange={(event) => {
-               setYear(event.target.value)
+              setYear(event.target.value);
             }}
-        ></input>
+          ></input>
+        </div>
 
-<label htmlFor="make" className="product-label">
-            PRODUCT MAKE
-        </label>
-        <input 
+        <div class="col-12">
+          <label htmlFor="make" className="product-label">
+            Make
+          </label>
+          <input
             type="text"
-            placeholder="Product make"
-            className="forminput"
+            class="form-control"
+            id="inputAddress"
+            placeholder="Tesla"
             autoComplete="off"
             value={make}
             onChange={(event) => {
-               setMake(event.target.value)
+              setMake(event.target.value);
             }}
-        ></input>
+          ></input>
+        </div>
 
-<label htmlFor="model" className="product-label">
-            PRODUCT MODEL
-        </label>
-        <input 
+        <div class="col-12">
+          <label htmlFor="model" className="product-label">
+            Description
+          </label>
+          <input
             type="text"
-            placeholder="Product model"
-            className="forminput"
-            autoComplete="off"
-            value={model}
+            class="form-control"
+            id="inputAddress2"
             onChange={(event) => {
-               setModel(event.target.value)
+              setDescription(event.target.value);
             }}
-        ></input>
+          ></input>
+        </div>
 
-<label htmlFor="description" className="product-label">
-            PRODUCT DESCRIPTION
-        </label>
-        <input 
+        <div class="col-md-6">
+          <label htmlFor="color" className="product-label">
+            Color
+          </label>
+          <input
             type="text"
-            placeholder="Product description"
-            className="forminput"
-            autoComplete="off"
-            value={description}
-            onChange={(event) => {
-               setDescription(event.target.value)
-            }}
-        ></input>
-
-<label htmlFor="color" className="product-label">
-            PRODUCT COLOR
-        </label>
-        <input 
-            type="text"
-            placeholder="Product color"
-            className="forminput"
+            class="form-control"
+            id="inputCity"
             autoComplete="off"
             value={color}
             onChange={(event) => {
-               setColor(event.target.value)
+              setColor(event.target.value);
             }}
-        ></input>
+          ></input>
+        </div>
 
-<label htmlFor="price" className="product-label">
-            PRODUCT PRICE
-        </label>
-        <input 
+        <div class="col-md-4">
+          <label for="inputState" class="form-label">
+            Model
+          </label>
+          <select id="inputState" class="form-select">
+            <option selected="">Choose...</option>
+            <option>...</option>
+          </select>
+        </div>
+
+        <div class="col-md-2">
+          <label htmlFor="price" className="product-label">
+            Price
+          </label>
+          <input
             type="text"
-            placeholder="Product price"
-            className="forminput"
+            class="form-control"
+            id="inputZip"
             autoComplete="off"
             value={price}
             onChange={(event) => {
-               setPrice(event.target.value)
+              setPrice(event.target.value);
             }}
-        ></input>
+          ></input>
+        </div>
 
-<label htmlFor="inventory" className="product-label">
-            PRODUCT INVENTORY
-        </label>
-        <input 
-            type="text"
-            placeholder="Product inventory"
-            className="forminput"
-            autoComplete="off"
-            value={inventory}
-            onChange={(event) => {
-               setInventory(event.target.value)
-            }}
-        ></input>
-        <button type="submit" className="formbutton">
+        <div class="col-md-2">
+        <label htmlFor="inventory" className="product-label">
+                    PRODUCT INVENTORY
+                </label>
+                <input 
+                    type="text"
+                    class="form-control"
+                    autoComplete="off"
+                    value={inventory}
+                    onChange={(event) => {
+                       setInventory(event.target.value)
+                    }}
+                ></input>
+            </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">
             CREATE
-        </button>
-    </form>
-</>
+          </button>
+        </div>
+      </form>
+    </>
+  );
+};
 
-);
-        
-export default createProduct;
+export default CreateProduct;
