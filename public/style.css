@@ -1,0 +1,15 @@
+.navit{
+    display: flex;
+    justify-content: space-between;
+    position: inherit;
+    background-color: red;
+    font-size: 3rem;
+    width: 100vw;
+    height: 4rem;
+    margin: 0;
+}
+
+.home{
+    display: flex;
+    font-size: 10rem;
+}
