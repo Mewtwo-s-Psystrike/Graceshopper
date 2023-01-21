@@ -158,6 +158,20 @@ const CreateProduct = ({ token, products, setProducts }) => {
           ></input>
         </div>
 
+        <div class="col-md-2">
+        <label htmlFor="inventory" className="product-label">
+                    PRODUCT INVENTORY
+                </label>
+                <input 
+                    type="text"
+                    class="form-control"
+                    autoComplete="off"
+                    value={inventory}
+                    onChange={(event) => {
+                       setInventory(event.target.value)
+                    }}
+                ></input>
+            </div>
         <div class="col-12">
           <button type="submit" class="btn btn-primary">
             CREATE
