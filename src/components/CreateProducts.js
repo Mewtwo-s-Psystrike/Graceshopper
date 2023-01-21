@@ -2,47 +2,44 @@ import React, { useState } from "react";
 import { createProduct } from "..api/api";
 import { useNavigate } from "react-router-dom";
 
-const createProduct = ({ token, products, setProducts }) => {
+const CreateProduct = ({ token, products, setProducts }) => {
 
-const [title, setTitle] = useState("");
-const [year, setYear] = useState("");
-const [make, setMake] = useState("");
-const [model, setModel] = useState("");
-cosnt [description, setDescription] = useState("");
-const [color, setColor] = useState("");
-const [price, setPrice] = useState("");
-const [inventory, setInventory] = useState("");
-const navigate = useNavigate();
-
-const onFormSubmit = async (event) => {
-    event.preventDefault();
-
-   const newProduct =  {title, year, make, model, description, color, price, inventory}
-}
-
-try {
-
-    if (!newProduct.length){
-        const result =  createProduct(token, user, newProduct);
+    const [title, setTitle] = useState("");
+    const [year, setYear] = useState("");
+    const [make, setMake] = useState("");
+    const [model, setModel] = useState("");
+    const [description, setDescription] = useState("");
+    const [color, setColor] = useState("");
+    const [price, setPrice] = useState("");
+    const [inventory, setInventory] = useState("");
+    const navigate = useNavigate();
     
-     setProducts([...products, result]);
-     setTitle("")
-     setYear("")
-     setMake("")
-     setModel("")
-     setDescription("")
-     setColor("")
-     setPrice("")
-     setInventory("")
-     navigate("/products")   
-   
-    } else {
-        alert("product already exists")
-    }
- } catch (error) {
-    console.error("error creating product")
- }
-};
+    const onFormSubmit = async (event) => {
+        event.preventDefault();
+    
+        const newProduct =  {title, year, make, model, description, color, price, inventory}
+    
+        try {
+            if (!products.find((product) => product.title === newProduct.title)) {
+                const result = await createProduct(token, newProduct);
+                setProducts([...products, result]);
+                setTitle("")
+                setYear("")
+                setMake("")
+                setModel("")
+                setDescription("")
+                setColor("")
+                setPrice("")
+                setInventory("")
+                navigate("/products")   
+            } else {
+                alert("product already exists")
+            }
+        } catch (error) {
+            console.error("error creating product")
+        }
+    };
+}
 
 return(<>
     <h2 className="product-title">CREATE NEW PRODUCT</h2>
