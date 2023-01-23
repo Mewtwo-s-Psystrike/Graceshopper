@@ -23,7 +23,7 @@ const App = () => {
     <div className="nav-seperation">
 
         <div className="navit">
-            <Link to="/" className="text-decoration-none">
+            <Link to="/" className ="graceautos">
               GRACE AUTOS
             </Link>
         </div>
