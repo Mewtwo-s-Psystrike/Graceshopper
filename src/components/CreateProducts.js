@@ -50,7 +50,8 @@ const CreateProduct = ({ user,token, products, setProducts }) => {
 
   return (
     <>
-      <form className="row g-3" onSubmit={onFormSubmit}>
+    <div className="createwindow">
+    <form className="row g-3" onSubmit={onFormSubmit}>
         <div className="col-md-6">
           <label htmlFor="title" className="product-label">
             Title
@@ -180,6 +181,8 @@ const CreateProduct = ({ user,token, products, setProducts }) => {
           </button>
         </div>
       </form>
+    </div>
+    
     </>
   );
 };

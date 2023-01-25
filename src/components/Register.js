@@ -2,7 +2,7 @@ import React from "react";
 
 const Register = () => {
   return (
-    <div>
+    <div className="registerwindow">
       <div id="login-page">
         <div>
           <h1 className="register-title">Register for Grace Autos</h1>

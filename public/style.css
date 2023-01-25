@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
 *{
     box-sizing: border-box;
 }
@@ -10,62 +12,38 @@ a:visited {
 
 .nav-seperation{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    background-color: blueviolet;
     color: rgb(190, 0, 0);
     background-color: transparent;
-    position: absolute;
-    margin-top: 2rem;
+    position: fixed;
+    margin-top: 1rem;
 }
 
 .graceautos{
     display: flex;
     text-decoration: none;
     font-weight: bolder;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 2.7rem;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2.5rem;
     background-color: transparent;
-    width: 80vw;
-    position: fixed;
-    justify-content: center;
-    align-items: center;
-    margin-left: 6.5rem;
-    text-shadow: 1px 2px 3px rgb(185, 1, 1);
-    font-weight: bolder
+    margin-left: 2rem;
+    text-shadow: 1px 1px 3px rgb(185, 1, 1);
+    font-weight: bolder;
 }
 
-.bibi-cart2{
-    color: red;
-
-}
-
-
-
-
-.dropdown{
+.shopaccountcart{
     display: flex;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    align-items: center;
-    margin: 2.5rem;
+    float: right;
     justify-content: space-between;
-    font-size: 1.5rem;
-    width: 95vw;
-    position: fixed;
+    align-items: center;
+    width: 15rem;
     text-shadow: 1px 2px 3px rgb(185, 1, 1);
-    color: red;
+    font-family: 'Bebas Neue', cursive;
+    color: rgb(190, 0, 0);
+    font-size: 2rem;
+    margin: .5rem 0rem 0rem 45rem;
 }
 
-.shopaccount{
-    display: flex;
-    margin-left: 1rem;
-    justify-content: space-between;
-    width:12rem;
-}
-
-.cartlink{
-    display: flex;
-    margin-right: 2rem;
-}
 
 .home{
     display: flex;
@@ -119,6 +97,18 @@ align-items: flex-end;
 }
 
 .cartwindow{
+    display: flex;
+    margin-top: 7rem;
+    position:absolute;
+}
+
+.createwindow{
+    display: flex;
+    margin-top: 7rem;
+    position:absolute;
+}
+
+.registerwindow{
     display: flex;
     margin-top: 7rem;
     position:absolute;
