@@ -2,7 +2,7 @@ import React from "react";
 
 const Checkout = () => {
     return(
-        <div className="cart">CHECKOUT PAGE</div>
+        <div className="cart">CHECKOUT PAGE, HELLO</div>
     )
 }
 
