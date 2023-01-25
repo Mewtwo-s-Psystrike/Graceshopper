@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
-const JWT_SECRET  = process.env.JWT_SECRET;
+const JWT_SECRET  = process.env.JWT_SECRET || "secret";
 const { getUserById } = require('../db/user');
 
 router.get('/health', async (req, res) => {
@@ -20,6 +20,8 @@ router.use(async (req, res, next) => {
   } else if (auth.startsWith(prefix)) {
     const token = auth.slice(prefix.length);
     try {
+      console.log("error with token", token)
+      console.log("error with JWT SECRET", JWT_SECRET)
       const { id } = jwt.verify(token, JWT_SECRET);
       if (id) {
         req.user = await getUserById(id);

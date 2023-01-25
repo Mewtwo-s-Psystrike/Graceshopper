@@ -29,7 +29,7 @@ const CreateProduct = ({ user,token, products, setProducts }) => {
 
     try {
       if (!products.find((product) => product.title === newProduct.title)) {
-        const result = await createProduct(token,user, newProduct);
+        const result = await createProduct(token, user, newProduct);
         setProducts([...products, result]);
         setTitle("");
         setYear("");
@@ -44,7 +44,7 @@ const CreateProduct = ({ user,token, products, setProducts }) => {
         alert("product already exists");
       }
     } catch (error) {
-      console.error("error creating product");
+      console.error("error creating product", error);
     }
   };
 
@@ -137,12 +137,19 @@ const CreateProduct = ({ user,token, products, setProducts }) => {
           <label htmlFor="inputState" className="form-label">
             Model
           </label>
+
           <select id="inputState" className="form-select">
             <option defaultValue={"Choose..."}>Choose...</option>
             <option>modelX</option>
             <option>modelZ</option>
             <option>modelT</option>
           </select>
+
+           <select id="inputState" className="form-select">
+            <option defaultValue="">Choose...</option>
+            <option>...</option>
+          </select> 
+
         </div>
 
         <div className="col-md-2">
