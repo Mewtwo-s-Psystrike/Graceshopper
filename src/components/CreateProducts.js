@@ -136,10 +136,12 @@ const CreateProduct = ({ user,token, products, setProducts }) => {
           <label htmlFor="inputState" className="form-label">
             Model
           </label>
-          {/* <select id="inputState" className="form-select">
-            <option selected="">Choose...</option>
-            <option>...</option>
-          </select> */}
+          <select id="inputState" className="form-select">
+            <option defaultValue={"Choose..."}>Choose...</option>
+            <option>modelX</option>
+            <option>modelZ</option>
+            <option>modelT</option>
+          </select>
         </div>
 
         <div className="col-md-2">

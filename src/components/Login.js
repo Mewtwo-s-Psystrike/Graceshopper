@@ -4,7 +4,7 @@ import { Link, Routes, Route } from "react-router-dom";
 
 const Login = () => {
   return (
-    <div>
+    <div className="loginwindow">
       <div id="login-page">
         <div>
           <h1 className="form-title">Welcome Returning User!</h1>

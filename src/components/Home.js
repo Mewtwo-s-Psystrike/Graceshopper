@@ -7,9 +7,9 @@ const Home = () => {
     return(
         <>
         <img src={home} alt="Concept" className="home"/>
-        <body className="oneHunVh">
-        <i class="bi bi-arrow-bar-down"></i>
-        </body>
+        <div className="oneHunVh">
+        <i className="bi bi-arrow-bar-down"></i>
+        </div>
         </>
         
 

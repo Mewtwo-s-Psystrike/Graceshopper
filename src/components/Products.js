@@ -4,9 +4,12 @@ import { Link, Routes, Route } from "react-router-dom";
 const Products = () => {
     return(
         <>
-         <div className="products">PRODUCTS PAGE</div>
+        <div className="productswindow">
+        <div className="products">PRODUCTS PAGE</div>
          <p>list of cars with title(year, make, model), description, price</p>
          <Link to='/createproducts'>CreateProduct</Link>
+        </div>
+         
         </>
        
     )
