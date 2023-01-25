@@ -1,7 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
 *{
     box-sizing: border-box;
+    text-decoration: none;
 }
 
 a:visited { 
@@ -12,8 +13,7 @@ a:visited {
 
 .nav-seperation{
     display: flex;
-    background-color: blueviolet;
-    color: rgb(190, 0, 0);
+    color: rgb(0, 0, 0);
     background-color: transparent;
     position: fixed;
     margin-top: 1rem;
@@ -23,12 +23,11 @@ a:visited {
     display: flex;
     text-decoration: none;
     font-weight: bolder;
-    font-family: 'Bebas Neue', cursive;
-    font-size: 2.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
     background-color: transparent;
-    margin-left: 2rem;
-    text-shadow: 1px 1px 3px rgb(185, 1, 1);
-    font-weight: bolder;
+    margin:0rem 0rem 0rem 1.5rem;
+    width: 15rem;
 }
 
 .shopaccountcart{
@@ -36,13 +35,22 @@ a:visited {
     float: right;
     justify-content: space-between;
     align-items: center;
-    width: 15rem;
-    text-shadow: 1px 2px 3px rgb(185, 1, 1);
-    font-family: 'Bebas Neue', cursive;
-    color: rgb(190, 0, 0);
-    font-size: 2rem;
-    margin: .5rem 0rem 0rem 45rem;
+    width: 13rem;
+    font-family: 'Montserrat', sans-serif;
+    color: rgb(0, 0, 0);
+    font-size: 1rem;
+    margin: 0rem 0rem 0rem 30rem;
 }
+
+.shopnav:hover{
+    font-size: 1.08rem;
+}
+
+.accountnav:hover{
+    font-size: 1.08rem;
+
+}
+
 
 
 .home{
@@ -54,23 +62,6 @@ a:visited {
     object-fit:cover;
     position:fixed;
     z-index: -1;
-}
-
-.tesla{
-    display: flex;
-    position: absolute;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 1px 1px 10px red;
-}
-
-.oneHunVh{
-display: flex;
-height: 100vh;
-width: 100vw;
-background-color: transparent;
-justify-content: center;
-align-items: flex-end;
 }
 
 .modelshome{
@@ -112,4 +103,9 @@ align-items: flex-end;
     display: flex;
     margin-top: 7rem;
     position:absolute;
+}
+
+.shopaccountcart{
+    display: flex;
+    margin-left: 60rem;
 }

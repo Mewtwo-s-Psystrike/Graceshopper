@@ -47,8 +47,8 @@ const App = () => {
               <i className="bibi-cart2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
+                  width="25"
+                  height="25"
                   className="bi bi-cart2"
                   viewBox="0 0 16 16"
                 >
