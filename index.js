@@ -11,6 +11,10 @@ app.use(express.json());
 
 app.use('/api', router);
 
+app.use('*', (req, res) => {
+  res.send('not found')
+} )
+
 app.use((err, req, res, next) => {
     console.error(err);
     res.status(500).send({ message: 'Something went wrong' });

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { createProduct } from "../api/api";
 import { useNavigate } from "react-router-dom";
 
-const CreateProduct = ({ token, products, setProducts }) => {
+const CreateProduct = ({ user,token, products, setProducts }) => {
   const [title, setTitle] = useState("");
   const [year, setYear] = useState("");
   const [make, setMake] = useState("");
@@ -29,7 +29,7 @@ const CreateProduct = ({ token, products, setProducts }) => {
 
     try {
       if (!products.find((product) => product.title === newProduct.title)) {
-        const result = await createProduct(token, newProduct);
+        const result = await createProduct(token,user, newProduct);
         setProducts([...products, result]);
         setTitle("");
         setYear("");
@@ -50,15 +50,15 @@ const CreateProduct = ({ token, products, setProducts }) => {
 
   return (
     <>
-      <form class="row g-3">
-        <div class="col-md-6">
+      <form className="row g-3" onSubmit={onFormSubmit}>
+        <div className="col-md-6">
           <label htmlFor="title" className="product-label">
             Title
           </label>
           <input
             type="text"
             placeholder="Product Title"
-            class="form-control"
+            className="form-control"
             id="inputEmail4"
             autoComplete="off"
             value={title}
@@ -68,14 +68,14 @@ const CreateProduct = ({ token, products, setProducts }) => {
           ></input>
         </div>
 
-        <div class="col-md-6">
+        <div className="col-md-6">
           <label htmlFor="year" className="product-label">
             Year
           </label>
           <input
             type="text"
             placeholder="Product year"
-            class="form-control"
+            className="form-control"
             id="inputPassword4"
             autoComplete="off"
             value={year}
@@ -85,13 +85,13 @@ const CreateProduct = ({ token, products, setProducts }) => {
           ></input>
         </div>
 
-        <div class="col-12">
+        <div className="col-12">
           <label htmlFor="make" className="product-label">
             Make
           </label>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             id="inputAddress"
             placeholder="Tesla"
             autoComplete="off"
@@ -102,13 +102,13 @@ const CreateProduct = ({ token, products, setProducts }) => {
           ></input>
         </div>
 
-        <div class="col-12">
+        <div className="col-12">
           <label htmlFor="model" className="product-label">
             Description
           </label>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             id="inputAddress2"
             onChange={(event) => {
               setDescription(event.target.value);
@@ -116,13 +116,13 @@ const CreateProduct = ({ token, products, setProducts }) => {
           ></input>
         </div>
 
-        <div class="col-md-6">
+        <div className="col-md-6">
           <label htmlFor="color" className="product-label">
             Color
           </label>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             id="inputCity"
             autoComplete="off"
             value={color}
@@ -132,23 +132,23 @@ const CreateProduct = ({ token, products, setProducts }) => {
           ></input>
         </div>
 
-        <div class="col-md-4">
-          <label for="inputState" class="form-label">
+        <div className="col-md-4">
+          <label htmlFor="inputState" className="form-label">
             Model
           </label>
-          <select id="inputState" class="form-select">
+          {/* <select id="inputState" className="form-select">
             <option selected="">Choose...</option>
             <option>...</option>
-          </select>
+          </select> */}
         </div>
 
-        <div class="col-md-2">
+        <div className="col-md-2">
           <label htmlFor="price" className="product-label">
             Price
           </label>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             id="inputZip"
             autoComplete="off"
             value={price}
@@ -158,13 +158,13 @@ const CreateProduct = ({ token, products, setProducts }) => {
           ></input>
         </div>
 
-        <div class="col-md-2">
+        <div className="col-md-2">
         <label htmlFor="inventory" className="product-label">
                     PRODUCT INVENTORY
                 </label>
                 <input 
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     autoComplete="off"
                     value={inventory}
                     onChange={(event) => {
@@ -172,8 +172,8 @@ const CreateProduct = ({ token, products, setProducts }) => {
                     }}
                 ></input>
             </div>
-        <div class="col-12">
-          <button type="submit" class="btn btn-primary">
+        <div className="col-12">
+          <button type="submit" className="btn btn-primary">
             CREATE
           </button>
         </div>

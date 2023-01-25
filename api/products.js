@@ -3,7 +3,7 @@ const productsRouter = express.Router();
 const {getAllProducts, createProduct, getProductByTitle, getProductById, updateProduct, deleteProduct} = require(`../db`);
 const { requireUser } = require(`./requireUser`);
 
-
+// url to use to get to this route: 
 productsRouter.get('/', async (req, res, next) => { 
     try {
       const products = await getAllProducts();

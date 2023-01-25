@@ -1,4 +1,21 @@
-const baseURL = 'http://localhost:3200/graceshopper'
+const baseURL = 'http://localhost:3200/api'
+
+
+export const getAllProducts = async () => {
+    try {
+        const response = await fetch(`${baseURL}/products`, {
+            headers:{
+                "Content-Type": "application/json" ,
+            }
+        })
+
+        const products = await response.json();
+        console.log("fetch all products in api --->", products);
+        return products
+    } catch (error) {
+        console.error("error fetching products")
+    }
+}
 
 export const createProduct = async (jwt, user, { title, imageurl, year, make, model, description, color, price, inventory }) => {
     try {
@@ -22,6 +39,7 @@ export const createProduct = async (jwt, user, { title, imageurl, year, make, mo
             }),
         });
         const result = await response.json();
+        console.log('created product in api--->', result);
         return result;
     } catch (error) {
         console.error(error);
@@ -49,6 +67,7 @@ export const updateProduct = async (jwt, {id, title, imageurl, year, make, model
             })
         })
         const result = await response.json();
+        console.log('error updating products in api', result);
         return result;
     } catch (error) {
         console.error(error);

@@ -1,12 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import home from "../images/home.jpg";
+
 
 const Home = () => {
     return(
         <>
-        <div className="home">Title</div>
-        <p>car picture with link</p>
-        <p>car picture with link</p>
-        <p>car picture with link</p>
+        <img src={home} alt="Concept" className="home"/>
+        <body className="oneHunVh">
+        <i class="bi bi-arrow-bar-down"></i>
+        </body>
         </>
         
 

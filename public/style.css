@@ -2,25 +2,40 @@
     box-sizing: border-box;
 }
 
-a:visited {
-    color: black;  
+a:visited { 
     text-decoration: none;
+    color:unset;
+}
+
+
+.nav-seperation{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgb(190, 0, 0);
+    background-color: transparent;
+    position: absolute;
+    margin-top: 2rem;
 }
 
 .graceautos{
     display: flex;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: bolder;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 1.5rem;
-    margin: .5rem;
-}
-.nav-seperation{
-    display: flex;
-    justify-content: space-between;
+    font-size: 2rem;
+    background-color: transparent;
+    width: 80vw;
+    position: fixed;
+    justify-content: center;
     align-items: center;
-    margin-top: .5rem;
+    margin-left: 6.5rem;
+    text-shadow: 1px 2px 3px rgb(185, 1, 1);
+    font-weight: bolder
 }
+
+
+
 
 .dropdown{
     display: flex;
@@ -29,4 +44,43 @@ a:visited {
     margin-right: 2rem;
     font-size: 1.2rem;
     width: 12rem;
+}
+
+.home{
+    display: flex;
+    height: 110vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    object-fit:cover;
+    position:fixed;
+    z-index: -1;
+}
+
+.tesla{
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 1px 1px 10px red;
+}
+
+.oneHunVh{
+display: flex;
+height: 100vh;
+width: 100vw;
+background-color: transparent;
+justify-content: center;
+align-items: flex-end;
+}
+
+.modelshome{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: absolute;
+    margin-bottom: 20rem;
+    font-weight: bolder;
+    font-size: 5rem;
+    text-decoration: none;
 }
