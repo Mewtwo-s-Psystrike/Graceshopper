@@ -103,8 +103,8 @@ export const getCart = async (jwt) => {
      });   
      const results = await response.json();
      return results;
-     } catch (err) {
-         console.error(err);
+     } catch (error) {
+         console.error(error);
      }
  };
  
@@ -122,8 +122,8 @@ export const getCart = async (jwt) => {
          });
          const result = await response.json();
          return result;
-     } catch (err) {
-         console.error(err);
+     } catch (error) {
+         console.error(error);
      }
  };
  
@@ -145,6 +145,22 @@ export const getCart = async (jwt) => {
          console.log('error updating cart product')
      }
  };
+
+ export const deleteCartProduct = async (jwt, productId) => {
+    try {
+        const response = await fetch(`${BASE_URL}/cart/${productId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${jwt}`,
+            },
+        });
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        console.error(error);
+    }
+};
  
  export const createHeaders = jwt => {
      return jwt

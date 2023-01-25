@@ -70,7 +70,7 @@ async function getCart(userId) {
   
   
   
-  async function destroyCartProduct(userId, id) {
+  async function deleteCartProduct(userId, id) {
     try {
       const {
         rows: [cart_product],
@@ -115,6 +115,6 @@ async function getCart(userId) {
     getCartProductById,
     createCartProduct,
     addProductToCart,
-    destroyCartProduct,
+    deleteCartProduct,
     updateCartProduct
   };

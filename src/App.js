@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getAllProducts } from "./api/api";
 import { Link, Route, Routes, useNavigate } from "react-router-dom";
-import {Navbar,Home,CreateProducts,Products,Login,Register,Cart,Checkout,} from "./components/Index";
+import {Home,CreateProducts,Products,Login,Register,Cart,Checkout,} from "./components/Index";
 
 const App = () => {
   const [products, setProducts] = useState([])

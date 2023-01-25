@@ -1,6 +1,6 @@
 const express = require("express");
 const cartRouter = express.Router();
-const { getCartProductById, addProductToCart, getCart, destroyCartProduct, updateCartProduct } = require("../db");
+const { getCartProductById, addProductToCart, getCart, deleteCartProduct, updateCartProduct } = require("../db");
 const { requireUser } = require("./requireUser");
 
 cartRouter.get('/', async (req, res) => {
