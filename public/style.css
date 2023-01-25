@@ -109,3 +109,12 @@ a:visited {
     display: flex;
     margin-left: 60rem;
 }
+
+.carddiv{
+    display: flex;
+    margin-top: 1rem;
+}
+.card{
+    width: 33rem;
+    margin: 4rem 1rem 1rem 1rem;
+}
