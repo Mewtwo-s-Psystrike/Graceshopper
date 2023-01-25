@@ -12,6 +12,7 @@ const Login = () => {
             <label>Username:</label>
             <input
               className="username"
+              autoComplete="on"
               // onChange={handleOnChange}
               // value={username}
               placeholder="Username"
@@ -22,6 +23,7 @@ const Login = () => {
             <input
               type="password"
               className="Password"
+              autoComplete="on"
               // onChange={handleOnChange}
               // value={password}
               placeholder="Password"

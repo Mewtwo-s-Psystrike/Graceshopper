@@ -4,7 +4,7 @@ import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import {Navbar,Home,CreateProducts,Products,Login,Register,Cart,Checkout,} from "./components/Index";
 
 const App = () => {
-  const [products, setProducts] = useState({})
+  const [products, setProducts] = useState([])
 
   useEffect(() => {
     const fetchAllProducts = async () => {
@@ -48,7 +48,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="/createproducts" element={<CreateProducts />} />
+        <Route path="/createproducts" element={<CreateProducts setProducts={setProducts} products={products} />} />
       </Routes>
     </>
   );
