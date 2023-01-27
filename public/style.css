@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Open+Sans&display=swap');
 
 *{
     box-sizing: border-box;
@@ -130,7 +130,13 @@ a:visited {
     border-radius: 5px 5px;
     padding: .5rem;
     box-shadow: 1px 1px 3px rgb(122, 122, 122);
-    ;
+}
+.userlog{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.passlog{
+    font-family: 'Montserrat', sans-serif;
 }
 
 .logbtn{
@@ -197,4 +203,25 @@ a:visited {
 .card{
     width: 33rem;
     margin: 4rem 1rem 1rem 1rem;
+}
+
+.card-title{
+     font-family: 'Montserrat', sans-serif;
+}
+
+.ptext{
+    font-family: 'Open Sans', sans-serif;
+}
+
+.cardbtn{
+    display: flex;
+    border: none;
+    background-color: black;
+    color: white;
+    height: 2rem;
+    width: 27rem;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 5px 5px;
 }

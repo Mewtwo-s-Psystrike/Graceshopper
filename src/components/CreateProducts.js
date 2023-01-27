@@ -7,6 +7,7 @@ const CreateProduct = ({ user,token, products, setProducts }) => {
   const [year, setYear] = useState("");
   const [make, setMake] = useState("");
   const [model, setModel] = useState("");
+  const [imageurl, setImageurl] = useState("")
   const [description, setDescription] = useState("");
   const [color, setColor] = useState("");
   const [price, setPrice] = useState("");
@@ -19,6 +20,7 @@ const CreateProduct = ({ user,token, products, setProducts }) => {
     const newProduct = {
       title,
       year,
+      imageurl,
       make,
       model,
       description,
@@ -36,6 +38,7 @@ const CreateProduct = ({ user,token, products, setProducts }) => {
         setMake("");
         setModel("");
         setDescription("");
+        setImgurl("");
         setColor("");
         setPrice("");
         setInventory("");
@@ -58,7 +61,6 @@ const CreateProduct = ({ user,token, products, setProducts }) => {
           </label>
           <input
             type="text"
-            placeholder="Product Title"
             className="form-control"
             id="inputEmail4"
             autoComplete="off"
@@ -75,7 +77,6 @@ const CreateProduct = ({ user,token, products, setProducts }) => {
           </label>
           <input
             type="text"
-            placeholder="Product year"
             className="form-control"
             id="inputPassword4"
             autoComplete="off"
@@ -86,7 +87,7 @@ const CreateProduct = ({ user,token, products, setProducts }) => {
           ></input>
         </div>
 
-        <div className="col-12">
+        <div className="col-md-6">
           <label htmlFor="make" className="product-label">
             Make
           </label>
@@ -94,7 +95,6 @@ const CreateProduct = ({ user,token, products, setProducts }) => {
             type="text"
             className="form-control"
             id="inputAddress"
-            placeholder="Tesla"
             autoComplete="off"
             value={make}
             onChange={(event) => {
@@ -102,6 +102,23 @@ const CreateProduct = ({ user,token, products, setProducts }) => {
             }}
           ></input>
         </div>
+
+        <div className="col-md-6">
+          <label htmlFor="color" className="product-label">
+            Model
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="inputModel"
+            autoComplete="off"
+            value={imageurl}
+            onChange={(event) => {
+              setImageurl(event.target.value);
+            }}
+          ></input>
+        </div>
+
 
         <div className="col-12">
           <label htmlFor="model" className="product-label">
@@ -117,7 +134,7 @@ const CreateProduct = ({ user,token, products, setProducts }) => {
           ></input>
         </div>
 
-        <div className="col-md-6">
+        <div className="col-md-2">
           <label htmlFor="color" className="product-label">
             Color
           </label>
@@ -131,25 +148,6 @@ const CreateProduct = ({ user,token, products, setProducts }) => {
               setColor(event.target.value);
             }}
           ></input>
-        </div>
-
-        <div className="col-md-4">
-          <label htmlFor="inputState" className="form-label">
-            Model
-          </label>
-
-          <select id="inputState" className="form-select">
-            <option defaultValue={"Choose..."}>Choose...</option>
-            <option>modelX</option>
-            <option>modelZ</option>
-            <option>modelT</option>
-          </select>
-
-           <select id="inputState" className="form-select">
-            <option defaultValue="">Choose...</option>
-            <option>...</option>
-          </select> 
-
         </div>
 
         <div className="col-md-2">
@@ -170,7 +168,7 @@ const CreateProduct = ({ user,token, products, setProducts }) => {
 
         <div className="col-md-2">
         <label htmlFor="inventory" className="product-label">
-                    PRODUCT INVENTORY
+                   Inventory
                 </label>
                 <input 
                     type="text"

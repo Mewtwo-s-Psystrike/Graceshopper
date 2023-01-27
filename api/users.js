@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 const { createUser, getUser, getUserById } = require('../db');
 const { requireUser } = require('./requireUser');
 
-console.log('require user--->', requireUser);
 
 usersRouter.post('/login', async (req, res, next) => {
     const {username, password} = req.body
@@ -39,20 +38,24 @@ usersRouter.post('/register', async (req, res, next) => {
     const { username, password} = req.body;
   
     try {
-      const _user = await getUser(username);
-  
+      const _user = await getUser({username});
+      console.log("_user -----", _user);
+
       if (_user) {
         next({
           name: 'UserExistsError',
-          message: 'A user with that email already exists'
+          message: 'A user with that username already exists'
         });
       }
-  
+    
       const user = await createUser({
         username,
         password,
       });
-  
+
+      console.log('username -----', user.username);
+      console.log('user password -----', user.password);
+
       const token = jwt.sign({ 
         id: user.id, 
         username
@@ -64,8 +67,8 @@ usersRouter.post('/register', async (req, res, next) => {
         message: "Thank you for signing up!",
         token 
       });
-    } catch ({ name, message }) {
-      next({ name, message })
+    } catch (error) {
+      next(error)
     } 
 });
 

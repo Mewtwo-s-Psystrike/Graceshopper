@@ -16,7 +16,7 @@ app.use('*', (req, res) => {
 } )
 
 app.use((err, req, res, next) => {
-    console.error(err);
+    console.error('500 error', err);
     res.status(500).send({ message: 'Something went wrong' });
   });
 
