@@ -13,10 +13,12 @@ async function createUser({ username, password,isAdmin }) {
     RETURNING *;
     `, [username, hashedPassword, isAdmin]);
 
+    console.log('user in user', user);
     delete user.password;
     return user;
   } catch (error) {
-    console.log("Error creating user");
+    console.log("Error creating user", error);
+    throw error
   }
 }
 

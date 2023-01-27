@@ -8,24 +8,32 @@ const Products = ({ products, token }) => {
       <div className="carddiv">
         {products.map((product) => (
            <div className="card">
+
+          <div className="cardleft">
           <img src={product.imageurl} className="card-img-top" alt="..." height={250}></img>
-           <div className="card-body">
+          </div>
+          <div className="cardright">
+          <div className="card-body">
              <h5 className="card-title">{product.year} {product.make} {product.model}</h5>
-             <p className="card-text">
+             <p className="ptext">
              {product.description}
              </p>
            </div>
+           <div className="ptext">
            <ul className="list-group list-group-flush">
              <li className="list-group-item">Price USD: {product.price}</li>
              <li className="list-group-item">Color: {product.color}</li>
-             <li className="list-group-item">Invetory: {product.inventory}</li>
+             <li className="list-group-item">Inventory: {product.inventory}</li>
            </ul>
+            </div>
+          
            <div className="card-body">
             
-            <Link to="/createproducts" className="card-link">CREATE PRODUCTS</Link>
-             <a href="#" className="card-link">
+             <button href="#" className="cardbtn">
                ADD TO CART
-             </a>
+             </button>
+          </div>
+          
            </div>
          </div>
         ))}

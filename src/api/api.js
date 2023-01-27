@@ -190,9 +190,9 @@ export const getCart = async (jwt) => {
    };
  
  
- export const registerUser = async (username, password, action) => {
+ export const registerUser = async (username, password) => {
      try {
-       const response = await fetch(`${baseURL}/users/${action}`, {
+       const response = await fetch(`${baseURL}/users/register`, {
          method: "POST",
          headers: {
            "Content-Type": "application/json",
@@ -204,8 +204,10 @@ export const getCart = async (jwt) => {
        });
  
        const data = await response.json();
+       console.log('data in register api', data);
        return data;
      } catch (error) {
        console.error("There was an error registering the user", error);
+       throw error
      }
  };
