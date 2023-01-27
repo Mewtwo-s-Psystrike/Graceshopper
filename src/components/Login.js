@@ -4,42 +4,39 @@ import { Link, Routes, Route } from "react-router-dom";
 
 const Login = () => {
   return (
-    <div>
-      <div id="login-page">
+    <div className="loginwindow">
+      <div className="logindiv">
         <div>
-          <h1 className="form-title">Welcome Returning User!</h1>
-          <form className="username-box">
-            <label>Username:</label>
+          <h1 className="logintitle">Account</h1>
+          <form className="loginform">
+            <label className="userlog">Username</label>
+            <br />
             <input
               className="username"
               autoComplete="on"
               // onChange={handleOnChange}
               // value={username}
-              placeholder="Username"
             />
             <br />
+            <label className="passlog">Password</label>
             <br />
-            <label>Password:</label>
             <input
               type="password"
-              className="Password"
+              className="password"
               autoComplete="on"
               // onChange={handleOnChange}
               // value={password}
-              placeholder="Password"
             />
-            <link></link>
-            <button type="submit" id="login-button">
-              Login
+            <button type="submit" className="logbtn">
+              SIGN IN
             </button>
           </form>
         </div>
         <br />
-        <div id="register">
-          <Link to="/register">
-            Don't have an accoun with us? Register Here
+        <p>OR</p>
+          <Link to="/register" className="text-decoration-none">
+             <button className="createacct">CREATE ACCOUNT</button>
           </Link>
-        </div>
       </div>
     </div>
   );

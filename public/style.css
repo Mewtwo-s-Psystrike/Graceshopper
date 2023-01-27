@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
 *{
     box-sizing: border-box;
+    text-decoration: none;
 }
 
 a:visited { 
@@ -10,41 +13,45 @@ a:visited {
 
 .nav-seperation{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: rgb(190, 0, 0);
+    color: rgb(0, 0, 0);
     background-color: transparent;
-    position: absolute;
-    margin-top: 2rem;
+    position: fixed;
+    margin-top: 1rem;
 }
 
 .graceautos{
     display: flex;
     text-decoration: none;
     font-weight: bolder;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 2rem;
-    background-color: transparent;
-    width: 80vw;
-    position: fixed;
-    justify-content: center;
-    align-items: center;
-    margin-left: 6.5rem;
-    text-shadow: 1px 2px 3px rgb(185, 1, 1);
-    font-weight: bolder
-}
-
-
-
-
-.dropdown{
-    display: flex;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    justify-content: space-between;
-    margin-right: 2rem;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.2rem;
-    width: 12rem;
+    background-color: transparent;
+    margin:0rem 2rem 0rem 1.5rem;
+    width: 15rem;
 }
+
+.shopaccountcart{
+    display: flex;
+    float: right;
+    justify-content: space-between;
+    align-items: center;
+    width: 13rem;
+    font-family: 'Montserrat', sans-serif;
+    color: rgb(0, 0, 0);
+    font-size: 1rem;
+    margin: 0rem 0rem 0rem 30rem;
+}
+
+.shopnav:hover{
+    font-size: 1.08rem;
+}
+
+.accountnav:hover{
+    font-size: 1.08rem;
+
+}
+
+
 
 .home{
     display: flex;
@@ -57,23 +64,6 @@ a:visited {
     z-index: -1;
 }
 
-.tesla{
-    display: flex;
-    position: absolute;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 1px 1px 10px red;
-}
-
-.oneHunVh{
-display: flex;
-height: 100vh;
-width: 100vw;
-background-color: transparent;
-justify-content: center;
-align-items: flex-end;
-}
-
 .modelshome{
     display: flex;
     justify-content: center;
@@ -83,4 +73,128 @@ align-items: flex-end;
     font-weight: bolder;
     font-size: 5rem;
     text-decoration: none;
+}
+
+.loginwindow{
+    display: flex;
+    margin-top: 5rem;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    width: 100vw;
+    height: 100vh;
+}
+
+.logindiv{
+    display: flex;
+    background-color: transparent;
+    height: 50vh;
+    width: 50vw;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 auto;
+    padding-bottom: 7rem;
+}
+
+.logintitle{
+    display: flex;
+    margin: 1rem 0rem 1rem 0rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+}
+
+.username{
+    display: flex;
+    width: 20rem;
+    height: 2.5rem;
+    margin: .5rem 0rem;
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgb(240, 240, 240);
+    border: none;
+    color: white;
+    border-radius: 5px 5px;
+    padding: .5rem;
+    box-shadow: 1px 1px 3px rgb(122, 122, 122);
+}
+
+.password{
+    display: flex;
+    width: 20rem;
+    height: 2.5rem;
+    margin: .5rem 0rem 1rem 0rem;
+    font-family: 'Montserrat', sans-serif;
+    background-color:rgb(240, 240, 240);
+    color: white;
+    border: none;
+    border-radius: 5px 5px;
+    padding: .5rem;
+    box-shadow: 1px 1px 3px rgb(122, 122, 122);
+    ;
+}
+
+.logbtn{
+    display: flex;
+    width: 10rem;
+    height: 2rem;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(148, 172, 255);
+    color: white;
+    border: none;
+    border-radius: 5px 5px;
+    box-shadow: 1px 1px 3px rgb(122, 122, 122);
+}
+
+.createacct{
+    display: flex;
+    align-items: center;
+    height: 2rem;
+    width: 10rem;
+    justify-content: center;
+    border: none;
+    text-decoration: none;
+    border-radius: 5px 5px;
+    background-color: black;
+    color: white;
+    box-shadow: 1px 1px 3px rgb(122, 122, 122);
+}
+
+
+.productswindow{
+    display: flex;
+    margin-top: 7rem;
+    position:absolute;
+}
+
+.cartwindow{
+    display: flex;
+    margin-top: 7rem;
+    position:absolute;
+}
+
+.createwindow{
+    display: flex;
+    margin-top: 7rem;
+    position:absolute;
+}
+
+.registerwindow{
+    display: flex;
+    margin-top: 7rem;
+    position:absolute;
+}
+
+.shopaccountcart{
+    display: flex;
+    margin-left: 60rem;
+}
+
+.carddiv{
+    display: flex;
+}
+.card{
+    width: 33rem;
+    margin: 4rem 1rem 1rem 1rem;
 }

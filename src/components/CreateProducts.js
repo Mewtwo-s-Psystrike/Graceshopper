@@ -50,7 +50,8 @@ const CreateProduct = ({ user,token, products, setProducts }) => {
 
   return (
     <>
-      <form className="row g-3" onSubmit={onFormSubmit}>
+    <div className="createwindow">
+    <form className="row g-3" onSubmit={onFormSubmit}>
         <div className="col-md-6">
           <label htmlFor="title" className="product-label">
             Title
@@ -136,10 +137,19 @@ const CreateProduct = ({ user,token, products, setProducts }) => {
           <label htmlFor="inputState" className="form-label">
             Model
           </label>
+
+          <select id="inputState" className="form-select">
+            <option defaultValue={"Choose..."}>Choose...</option>
+            <option>modelX</option>
+            <option>modelZ</option>
+            <option>modelT</option>
+          </select>
+
            <select id="inputState" className="form-select">
             <option defaultValue="">Choose...</option>
             <option>...</option>
           </select> 
+
         </div>
 
         <div className="col-md-2">
@@ -178,6 +188,8 @@ const CreateProduct = ({ user,token, products, setProducts }) => {
           </button>
         </div>
       </form>
+    </div>
+    
     </>
   );
 };
