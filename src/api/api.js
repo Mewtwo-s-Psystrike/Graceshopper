@@ -109,12 +109,11 @@ export const getCart = async (jwt) => {
  };
  
  
- export const addProductToCart = async (jwt, {productId, qty}) => {
-     const headers = createHeaders(jwt);
+ export const addProductToCart = async ( {productId, qty}) => {
+
      try {
          const response = await fetch(`${baseURL}/cart`, {
              method: 'POST',
-             headers,
              body: JSON.stringify({
                  productId,
                  qty,
@@ -148,7 +147,7 @@ export const getCart = async (jwt) => {
 
  export const deleteCartProduct = async (jwt, productId) => {
     try {
-        const response = await fetch(`${BASE_URL}/cart/${productId}`, {
+        const response = await fetch(`${baseURL}/cart/${productId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -159,6 +158,7 @@ export const getCart = async (jwt) => {
         return result;
     } catch (error) {
         console.error(error);
+        throw error;
     }
 };
  
@@ -173,6 +173,35 @@ export const getCart = async (jwt) => {
          };
  };
  
+ export const loginUser = async (username, password) => {
+    try {
+        const user = await getUser({username, password});
+        if(!user){
+            throw new Error ("Error logging in. Please check your username and password and try again1")
+        }
+        const response = await fetch(`${baseURL}/users/login`,{
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${newToken}`
+        },
+        body: JSON.stringify({
+            username: user.username,
+            password: user.password
+        })
+      });
+  
+      if (!response.ok) {
+        throw new Error("Error logging in. Please check your username and password and try again.2");
+      }
+  
+      const result = await response.json();
+      return result;
+    } catch(ex) {
+      throw ex;
+    }
+  };
+
  export const getCurrentUser = async () => {
  
      const headers = createHeaders();

@@ -1,8 +1,40 @@
 import React from "react";
 import { Link, Routes, Route } from "react-router-dom";
+import { addProductToCart, deleteProduct } from '../api/api';
 
 const Products = ({ products, token }) => {
   console.log("products prop", products);
+
+  async function addToCart(id, qty) {
+    const newCartProduct = {
+      productId: id,
+      qty
+    };
+    const result = await addProductToCart(newCartProduct);
+    if (result.error) {
+      console.error(result.error);
+    } else {
+      setSuccessMessage('Car added to cart');
+      setTimeout(() => {
+        setSuccessMessage('');
+      }, 2000);
+    }
+  }
+
+  
+  async function handleDelete() {
+    const result = await deleteProduct(jwt, id);
+    if (result) {
+      setSuccessMessage('Product Deleted!');
+      setErrorMessage('');
+      setTimeout(() => {
+        closeModal();     
+      }, 1000);
+    } else {
+      setErrorMessage('');
+    }
+  };
+
   return (
     <>
       <div className="carddiv">
@@ -29,7 +61,10 @@ const Products = ({ products, token }) => {
           
            <div className="card-body">
             
-             <button href="#" className="cardbtn">
+             <button href="#" className="cardbtn" onClick= {event => {
+              event.preventDefault();
+              addToCart();
+             }}>
                ADD TO CART
              </button>
           </div>
