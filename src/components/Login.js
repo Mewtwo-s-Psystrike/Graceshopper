@@ -21,13 +21,18 @@ const Login = ({setToken}) => {
       const res = await loginUser(username, password);
       const newToken = res['token']
       console.log('newToken', newToken)
-      console.log('token', token)
+      if(!newToken){
+        console.error('Token is not set');
+        throw new Error('Token is not set');
+      }
       setToken(newToken);
       window.localStorage.setItem('JWT_SECRET', newToken);
+      const token = window.localStorage.getItem('JWT_SECRET');
+      console.log('Token in local storage', token)
       window.alert("You have successfully signed in! Now redirecting to home page...")
       window.location.assign("/");
     } catch (error) {
-      // window.alert("Error logging in. Please check your username and password and try again.3");
+      window.alert("Error logging in. Please check your username and password and try again.3");
       console.error('handle submit', error);
       throw error
     }

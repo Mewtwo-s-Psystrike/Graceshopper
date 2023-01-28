@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getAllProducts } from "./api/api";
+import { getAllProducts, getCurrentUser } from "./api/api";
 import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import {
   
@@ -14,6 +14,16 @@ import {
 
 const App = () => {
  const [products, setProducts] = useState([])
+ const [user, setUser] = useState({})
+ const [token, setToken] = useState(
+  window.localStorage.getItem("token" || "")
+);
+
+function logout() {
+  window.localStorage.removeItem('JWT_SECRET');
+  setToken('');
+  setUser('');
+}
 
   useEffect(() => {
     const fetchAllProducts = async () => {
@@ -26,6 +36,20 @@ const App = () => {
     };
     fetchAllProducts();
   }, [setProducts]);
+
+  useEffect(() => {
+    if (token) {
+      window.localStorage.setItem("token", token);
+    } else {
+      window.localStorage.removeItem("token", token);
+    }
+  }, [token]);
+
+  useEffect(() => {
+    if(token){
+      getCurrentUser(token).then(result => setUser(result));
+    }
+  }, [token])
 
   return (
     <>
@@ -46,6 +70,15 @@ const App = () => {
             <Link to="/cart" className="text-decoration-none" >
               Cart
             </Link>
+            {token ? (
+            <Link to="/" onClick={logout} className="login-btn">
+              Logout
+            </Link>
+            ):(       
+            <>
+              <Link to="/login" className="log-nav">Login</Link>
+            </>)
+          }
         </div>
       </div>
       </div>
@@ -56,7 +89,7 @@ const App = () => {
         <Route exact path="/" element={<Home />} />
         <Route path="/products" element={<Products products={products}/>} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login token={token} setToken={setToken}/>} />
         <Route path="/register" element={<Register />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/createproducts" element={<CreateProducts setProducts={setProducts} products={products} />} />

@@ -3,30 +3,31 @@ const usersRouter = express.Router();
 const jwt = require('jsonwebtoken');
 const bcrypt = require("bcrypt");
 const { JWT_SECRET = 'neverTell' } = process.env;
-const { createUser, getUser, getUserById, getUserByUsername } = require('../db');
+const { createUser, getUserById, getUserByUsername } = require('../db');
 const { requireUser } = require('./requireUser');
 
 
 usersRouter.post('/login', async (req, res, next) => {
   const { username, password } = req.body;
   if (!username || !password) {
-    res.send({
+    res.status(400).send({
       name: "MissingCredentialsError",
       message: "Please suppy both a username and password"
     });
+    return;
   }
   try {
     const user = await getUserByUsername(username);
     console.log('user api call', user);
-    const hashedPassword = user.password
-    if (user && await bcrypt.compare(password, hashedPassword)) {
+    if (user && await bcrypt.compare(password, user.password)) {
       const jwtToken = jwt.sign(user, JWT_SECRET);
       res.send({ user: user, token: jwtToken, message: "You're logged in!" });
     } else {
-      next({
+      res.status(401).send({
         name: "IncorrectCredentialsError",
         message: "Username or password is incorrect",
       });
+      
     }
   } catch (error) {
     next(error);
@@ -80,15 +81,17 @@ usersRouter.get('/me', requireUser, async (req, res, next) => {
 
     if (!auth) {
         next(new Error('Authorization header missing'));
+        return;
       }
 
     if (auth.startsWith(prefix)) {
         const token = auth.slice(prefix.length);
-
+      
     try {
         const { id } = jwt.verify(token, process.env.JWT_SECRET);
         const me = await getUserById(id);
         res.send(me)
+    
       } catch (error) {
         console.log("Error in the user auth route")
         next(error);
