@@ -1,31 +1,67 @@
 import React, { useState } from "react";
-import {} from "../api/api";
-import { Link, Routes, Route } from "react-router-dom";
+import {loginUser} from "../api/api";
+import { Link } from "react-router-dom";
 
-const Login = () => {
+const Login = ({setToken}) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleOnChange = (event) => {
+    const changed = event.target.id;
+    if (changed === "username") {
+      setUsername(event.target.value);
+    } else {
+      setPassword(event.target.value);
+    }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const res = await loginUser(username, password);
+      const newToken = res['token']
+      console.log('newToken', newToken)
+      if(!newToken){
+        console.error('Token is not set');
+        throw new Error('Token is not set');
+      }
+      setToken(newToken);
+      window.localStorage.setItem('JWT_SECRET', newToken);
+      const token = window.localStorage.getItem('JWT_SECRET');
+      console.log('Token in local storage', token)
+      window.alert("You have successfully signed in! Now redirecting to home page...")
+      window.location.assign("/");
+    } catch (error) {
+      window.alert("Error logging in. Please check your username and password and try again.3");
+      console.error('handle submit', error);
+      throw error
+    }
+  }
   return (
     <div className="loginwindow">
       <div className="logindiv">
         <div>
           <h1 className="logintitle">Account</h1>
-          <form className="loginform">
+          <form onSubmit={handleSubmit} className="loginform">
             <label className="userlog">Username</label>
             <br />
             <input
               className="username"
-              autoComplete="on"
-              // onChange={handleOnChange}
-              // value={username}
+              id="username"
+              onChange={handleOnChange}
+              value={username}
+              placeholder="Username"
             />
             <br />
             <label className="passlog">Password</label>
             <br />
             <input
               type="password"
+              id="Password"
               className="password"
-              autoComplete="on"
-              // onChange={handleOnChange}
-              // value={password}
+              onChange={handleOnChange}
+              value={password}
+              placeholder="Password"
             />
             <button type="submit" className="logbtn">
               SIGN IN
