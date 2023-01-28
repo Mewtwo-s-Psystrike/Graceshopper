@@ -174,28 +174,26 @@ export const getCart = async (jwt) => {
  };
  
  export const loginUser = async (username, password) => {
+    const headers = createHeaders();
     try {
-        const user = await getUser({username, password});
-        if(!user){
-            throw new Error ("Error logging in. Please check your username and password and try again1")
-        }
+        // if(!user){
+        //     throw new Error ("Error logging in. Please check your username and password and try again1")
+        // }
         const response = await fetch(`${baseURL}/users/login`,{
         method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${newToken}`
-        },
+        headers: headers,
         body: JSON.stringify({
-            username: user.username,
-            password: user.password
+            username: username,
+            password: password
         })
       });
-  
+      console.log('response',response);
+
+      const result = await response.json();
+      console.log('login user result', result);
       if (!response.ok) {
         throw new Error("Error logging in. Please check your username and password and try again.2");
       }
-  
-      const result = await response.json();
       return result;
     } catch(ex) {
       throw ex;

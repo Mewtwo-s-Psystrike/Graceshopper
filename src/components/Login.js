@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {loginUser} from "../api/api";
 import { Link } from "react-router-dom";
 
-const Login = ({token, setToken}) => {
+const Login = ({setToken}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -20,12 +20,16 @@ const Login = ({token, setToken}) => {
     try {
       const res = await loginUser(username, password);
       const newToken = res['token']
+      console.log('newToken', newToken)
+      console.log('token', token)
       setToken(newToken);
       window.localStorage.setItem('JWT_SECRET', newToken);
       window.alert("You have successfully signed in! Now redirecting to home page...")
       window.location.assign("/");
     } catch (error) {
-      window.alert("Error logging in. Please check your username and password and try again.3");
+      // window.alert("Error logging in. Please check your username and password and try again.3");
+      console.error('handle submit', error);
+      throw error
     }
   }
   return (

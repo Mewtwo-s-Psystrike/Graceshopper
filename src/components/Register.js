@@ -9,12 +9,8 @@ const RegisterUser = () => {
 
   const handleRegisterClick = async (event) => {
     event.preventDefault();
-    const registerInfo = {
-      username: username,
-      password: password
-    };
 
-    const newUser = await registerUser(registerInfo);
+    const newUser = await registerUser(username, password);
     window.alert(newUser.message)
     setUsername("");
     setPassword("");

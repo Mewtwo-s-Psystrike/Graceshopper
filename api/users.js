@@ -17,6 +17,7 @@ usersRouter.post('/login', async (req, res, next) => {
   }
   try {
     const user = await getUserByUsername(username);
+    console.log('user api call', user);
     const hashedPassword = user.password
     if (user && await bcrypt.compare(password, hashedPassword)) {
       const jwtToken = jwt.sign(user, JWT_SECRET);
@@ -27,20 +28,20 @@ usersRouter.post('/login', async (req, res, next) => {
         message: "Username or password is incorrect",
       });
     }
-  } catch ({ name, message }) {
-    next({ name, message });
+  } catch (error) {
+    next(error);
   }
 });
 
 // POST /api/users/register
 usersRouter.post('/register', async (req, res, next) => {
     console.log(req.body);
-    const { username, password } = req.body.username;
+    const { username, password } = req.body;
   
     try {
       const _user = await getUserByUsername({username});
       if (_user) {
-        next({
+        res.send({
           name: 'UserExistsError',
           message: "User " + username + " is already taken.",
           name: 'UsernameExists',
@@ -57,7 +58,7 @@ usersRouter.post('/register', async (req, res, next) => {
         if (user) {
         const jwtToken = jwt.sign(user, JWT_SECRET);
          const response =  {
-            message: "thank you for signing up",
+            message: "Thank you for signing up",
             token: jwtToken,
             user: {
               id: user.id,
