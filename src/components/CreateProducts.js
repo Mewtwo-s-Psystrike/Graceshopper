@@ -8,6 +8,7 @@ const CreateProduct = ({ user,token, products, setProducts }) => {
   const [make, setMake] = useState("");
   const [model, setModel] = useState("");
   const [imageurl, setImageurl] = useState("")
+  const [odometer, setOdometer] = useState("")
   const [description, setDescription] = useState("");
   const [color, setColor] = useState("");
   const [price, setPrice] = useState("");
@@ -23,6 +24,7 @@ const CreateProduct = ({ user,token, products, setProducts }) => {
       imageurl,
       make,
       model,
+      odometer,
       description,
       color,
       price,
@@ -37,6 +39,7 @@ const CreateProduct = ({ user,token, products, setProducts }) => {
         setYear("");
         setMake("");
         setModel("");
+        setOdometer("");
         setDescription("");
         setImgurl("");
         setColor("");
@@ -119,7 +122,6 @@ const CreateProduct = ({ user,token, products, setProducts }) => {
           ></input>
         </div>
 
-
         <div className="col-12">
           <label htmlFor="model" className="product-label">
             Description
@@ -134,6 +136,22 @@ const CreateProduct = ({ user,token, products, setProducts }) => {
           ></input>
         </div>
 
+        <div className="col-md-6">
+          <label htmlFor="color" className="product-label">
+            Odometer
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="inputModel"
+            autoComplete="off"
+            value={odometer}
+            onChange={(event) => {
+              setOdometer(event.target.value);
+            }}
+          ></input>
+        </div>
+        
         <div className="col-md-2">
           <label htmlFor="color" className="product-label">
             Color

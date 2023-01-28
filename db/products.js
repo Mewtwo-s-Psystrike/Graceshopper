@@ -42,14 +42,14 @@ async function getAllProducts() {
     }
   }
   
-  async function createProduct({title, imageurl, year, make, model, description, color, price, inventory}) {
+  async function createProduct({title, imageurl, year, make, model,odometer, description, color, price, inventory}) {
     try {
        const { rows: [product] } = await client.query(`
        
-       INSERT INTO products (title, imageurl, year, make, model, description, color, price, inventory)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+       INSERT INTO products (title, imageurl, year, make, model,odometer, description, color, price, inventory)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
        RETURNING *;
-    `, [title, imageurl, year, make, model, description, color, price, inventory]); 
+    `, [title, imageurl, year, make, model,odometer, description, color, price, inventory]); 
     
         return product;
     } catch(error) {

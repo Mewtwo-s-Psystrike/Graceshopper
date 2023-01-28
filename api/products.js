@@ -18,9 +18,9 @@ productsRouter.get('/', async (req, res, next) => {
 
 
   productsRouter.post('/', requireUser, async (req, res) => {
-    const { title, imageurl, year, make, model, description, color, price, inventory } = req.body;
+    const { title, imageurl, year, make, model, odometer, description, color, price, inventory } = req.body;
     const _title = await getProductByTitle(title);
-    const newProduct = await createProduct({ title, imageurl, year, make, model, description, color, price, inventory });
+    const newProduct = await createProduct({ title, imageurl, year, make, model,odometer, description, color, price, inventory });
   
     if (_title) {
       res.send({
@@ -38,7 +38,7 @@ productsRouter.get('/', async (req, res, next) => {
     const { productId } = req.params;
   
     try {
-      const { title, imageurl, year, make, model, description, color, price, inventory } = req.body;
+      const { title, imageurl, year, make, model,odometer, description, color, price, inventory } = req.body;
   
       const updateFields = {};
   
@@ -58,12 +58,16 @@ productsRouter.get('/', async (req, res, next) => {
         updateFields.year = year;
       }
 
-      if (make) {
-        updateFields.make = make;
+      if (model) {
+        updateFields.model = model;
       }
       
       if (make) {
-        updateFields.model = model;
+        updateFields.make = make;
+      }
+
+      if (odometer) {
+        updateFields.odometer = odometer;
       }
   
       if (description) {
