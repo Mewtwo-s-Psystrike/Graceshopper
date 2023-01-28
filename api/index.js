@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
-const JWT_SECRET  = process.env.JWT_SECRET || "secret";
+const { JWT_SECRET = 'neverTell' } = process.env;
 const { getUserById } = require('../db/user');
 
 router.get('/health', async (req, res) => {
