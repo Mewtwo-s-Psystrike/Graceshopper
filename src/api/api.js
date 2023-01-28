@@ -17,7 +17,7 @@ export const getAllProducts = async () => {
     }
 }
 
-export const createProduct = async (jwt, user, { title, imageurl, year, make, model, description, color, price, inventory }) => {
+export const createProduct = async (jwt, user, { title, imageurl, year, make, model,odometer, description, color, price, inventory }) => {
     try {
         const response = await fetch(`${baseURL}/products`, {
             method: 'POST',
@@ -32,6 +32,7 @@ export const createProduct = async (jwt, user, { title, imageurl, year, make, mo
                 year,
                 make,
                 model,
+                odometer,
                 description,
                 color,
                 price,
@@ -46,7 +47,7 @@ export const createProduct = async (jwt, user, { title, imageurl, year, make, mo
     }
 };
 
-export const updateProduct = async (jwt, {id, title, imageurl, year, make, model, description, color, price, inventory }) => {
+export const updateProduct = async (jwt, {id, title, imageurl, year, make, model,odometer, description, color, price, inventory }) => {
     try {
             const response =  await fetch(`${baseURL}/products/${id}`, {
             method: 'PATCH',
@@ -60,6 +61,7 @@ export const updateProduct = async (jwt, {id, title, imageurl, year, make, model
                     year: year,
                     make: make,
                     model: model,
+                    odometer: odometer,
                     description: description,
                     color: color,
                     price: price,
