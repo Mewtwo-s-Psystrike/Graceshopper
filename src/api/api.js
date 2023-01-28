@@ -162,11 +162,11 @@ export const getCart = async (jwt) => {
     }
 };
  
- export const createHeaders = jwt => {
-     return jwt
+ export const createHeaders = token => {
+     return token
          ?{
              'Content-Type':'application/json',
-             'Authorization':`Bearer ${jwt}`,
+             'Authorization':`Bearer ${token}`,
          }
          :{
              'Content-Type':'application/json',
@@ -200,9 +200,9 @@ export const getCart = async (jwt) => {
     }
   };
 
- export const getCurrentUser = async () => {
+ export const getCurrentUser = async (token) => {
  
-     const headers = createHeaders();
+     const headers = createHeaders(token);
  
      try {
        const response = await fetch(`${baseURL}/users/me`, {

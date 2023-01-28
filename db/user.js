@@ -59,7 +59,7 @@ async function getUserById(userId) {
     SELECT *
     FROM users
     WHERE id = $1
-    `);
+    `,[userId]);
     if (!user) {
       throw new Error('User not found')
     } else {
