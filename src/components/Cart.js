@@ -23,7 +23,7 @@ const Cart = ({ jwt, products, navigate }) => {
       <Container>
         <ListGroup>
           <Row>
-            <Col id='cartbooks'>
+            <Col>
               {cartProducts ? (
                 cartProducts.map((product) => {
                   return <CartItemCard jwt={jwt} products={products} product={product} key={product.id} />

@@ -88,7 +88,7 @@ function logout() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/products" element={<Products products={products}/>} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/cart" element={<Cart user={user} token={token} products={products} />} />
         <Route path="/login" element={<Login token={token} setToken={setToken}/>} />
         <Route path="/register" element={<Register />} />
         <Route path="/checkout" element={<Checkout />} />
