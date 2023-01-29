@@ -15,8 +15,9 @@ a:visited {
     display: flex;
     color: rgb(0, 0, 0);
     background-color: transparent;
-    position: fixed;
+    position: absolute;
     margin-top: 1rem;
+    width: 100vw;
 }
 
 .graceautos{
@@ -26,32 +27,25 @@ a:visited {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.2rem;
     background-color: transparent;
-    margin:0rem 2rem 0rem 1.5rem;
-    width: 15rem;
+    position: fixed;
+    margin:0rem 5rem 0rem 1.5rem;
+    width: 15vw;
 }
 
 .shopaccountcart{
     display: flex;
-    float: right;
     justify-content: space-between;
     align-items: center;
-    width: 13rem;
+    width: 15rem;
     font-family: 'Montserrat', sans-serif;
     color: rgb(0, 0, 0);
+    margin:.2rem 1rem;
     font-size: 1rem;
-    margin: 0rem 0rem 0rem 30rem;
-}
-
-.shopnav:hover{
-    font-size: 1.08rem;
-}
-
-.accountnav:hover{
-    font-size: 1.08rem;
+    position: fixed;
+    top:1;
+    right:0;
 
 }
-
-
 
 .home{
     display: flex;
@@ -63,6 +57,66 @@ a:visited {
     position:fixed;
     z-index: -1;
 }
+
+.browse{
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    width: 50vw;
+    height: 90vh;
+    margin: 10vh 0 10vh 25vw;
+    align-items: flex-end;
+    text-decoration: none;
+    font-weight: bolder;
+    font-size: 2.5vh;
+}
+
+.slogan{
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    position: absolute;
+    margin-top: 10rem;
+    font-size: 1.3rem;
+    font-style: italic;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.browsebtnl{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    margin-bottom: 2rem;
+    border: none;
+    border-radius: 5px 5px;
+    font-size: 80%;
+    width: 20vw;
+    height: 4vh;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 1px 1px 2px black;
+    background-color: rgb(127, 127, 127, 0.5);
+    color: white;
+}
+
+.browsebtnr{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    margin-bottom: 2rem;
+    font-size: 80%;
+    border: none;
+    border-radius: 5px 5px;
+    width: 20vw;
+    height: 4vh;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 1px 1px 2px black;
+    background-color: rgb(127, 127, 127, 0.5);
+    color: white;
+}
+
+
 
 .modelshome{
     display: flex;
@@ -199,17 +253,27 @@ a:visited {
 
 .carddiv{
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;
+
 }
+
 .card{
-    width: 33rem;
-    height: 40rem;
-    margin: 6rem 2rem 0rem 1rem;
+    width: 30rem;
+    height: 43.5rem;
+    margin: 6rem .5rem 1rem .5rem;
     position:sticky;
 }
 
 .card-title{
      font-family: 'Montserrat', sans-serif;
      display: flex;
+}
+
+.card-img-top{
+    object-fit:cover;
 }
 
 .ptext{
@@ -222,20 +286,29 @@ a:visited {
 .cardbtn{
     display: flex;
     border: none;
-    background-color: black;
+    background-color: rgb(0, 0, 0);
     color: white;
     height: 2rem;
-    width: 30.5rem;
+    width: 28.5rem;
     align-items: center;
     justify-content: center;
     font-family: 'Montserrat', sans-serif;
     border-radius: 5px 5px;
+    position: relative;
+    margin: 0 auto;
 }
 
 .flexwrap{
     display: flex;
-    width: 100vw;
     flex-wrap: wrap;
+    width: 100vw;
+    height: 100vh;
+    overflow: scroll;
+}
+
+#inv{
+    margin-bottom: .5rem;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .searchForm{
@@ -246,3 +319,79 @@ a:visited {
     width: 100vw;
     margin-top: 3rem; 
 }
+
+.searchinput{
+    display: flex;
+    width: 50vw;
+    margin: 0rem .5rem 0rem .5rem ;
+    border: 1px solid rgb(221, 221, 221)
+}
+
+.searchbtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    width: 5rem;
+    box-shadow: 1px 1px 2px black;
+}
+
+@media (min-width: 720px) {
+   .dropdown{
+    display: none;
+} 
+
+  }
+
+@media only screen and (max-width: 912px) {
+    .shopaccountcart{
+        display: flex;
+        width: 100vw;
+        justify-content: space-evenly;
+        margin: 2rem 0rem 0rem 2rem;
+    }
+
+    .graceautos{
+        display: flex;
+        position:fixed;
+        width: 100vw;
+        justify-content: center;
+        align-items: center;
+        font-size: 1rem;
+        margin: 0 auto;
+    }
+
+    .searchForm{
+        display: flex;
+        margin-top: 5.3rem;
+    }
+
+     .carddiv{
+        margin-top: 2rem;
+        width: 100vw;
+     }
+     .cardbtn{
+        width: 75vw;
+     }
+
+     .browse{
+        width: 75vw;
+        margin: 10vh 0 10vh 12.5vw;
+     }
+
+     .browsebtnl{
+        font-size: 1.3vh;
+        width: 33vw;
+     }
+
+     .browsebtnr{
+        font-size: 1.3vh;
+        width: 33vw;
+     }
+
+     .slogan{
+        text-align: center;
+     }
+     
+     
+    }

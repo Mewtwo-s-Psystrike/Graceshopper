@@ -7,12 +7,13 @@ const Home = () => {
     return(
         <>
         <img src={home} alt="Concept" className="home"/>
-        <div className="oneHunVh">
-        <i className="bi bi-arrow-bar-down"></i>
+        <p className="slogan">The #1 World Leader For Used Tesla Models.</p>
+        <div className="browse">
+        <Link to="/products" className="text-decoration-none"><button className="browsebtnl">BROWSE MODELS</button></Link>
+        <Link to="/register" className="text-decoration-none"><button className="browsebtnr">CREATE ACCOUNT</button></Link>
         </div>
+       
         </>
-        
-
     )
 }
 
