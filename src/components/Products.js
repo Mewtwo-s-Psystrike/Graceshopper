@@ -7,6 +7,7 @@ const Products = ({ products, token }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState(products);
 
+
   console.log('filter products', filteredProducts);
 
   const handleSearchSubmit = (event) => {
@@ -28,14 +29,14 @@ const Products = ({ products, token }) => {
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
-  console.log("products prop", products);
+  console.log("products prop", products);}
 
   async function addToCart(id, qty) {
     const newCartProduct = {
       productId: id,
       qty
     };
-    const result = await addProductToCart(newCartProduct);
+    const result = await addProductToCart(token, newCartProduct);
     if (result.error) {
       console.error(result.error);
     } else {
@@ -96,10 +97,10 @@ const Products = ({ products, token }) => {
             </div>
           
            <div className="card-body">
-             <button href="#" className="cardbtn">
-            
+           
              <button href="#" className="cardbtn" onClick= {event => {
               event.preventDefault();
+              window.alert("You have successfully added this item to the cart.")
               addToCart();
              }}>
                ADD TO CART
@@ -108,7 +109,8 @@ const Products = ({ products, token }) => {
           
            </div>
          </div>
-        ))}
+        )
+        )}
       </div>
     </div>
       
