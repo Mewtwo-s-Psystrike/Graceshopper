@@ -100,6 +100,7 @@ const Products = ({ products, token }) => {
            
              <button href="#" className="cardbtn" onClick= {event => {
               event.preventDefault();
+              window.alert("You have successfully added this item to the cart.")
               addToCart();
              }}>
                ADD TO CART
