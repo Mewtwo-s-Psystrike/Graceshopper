@@ -74,6 +74,13 @@ usersRouter.post('/register', async (req, res, next) => {
     }
   });
 
+  usersRouter.use((req, res, next) => {
+    if (!req.headers['authorization']) {
+        return res.status(401).send({ message: 'Missing Authorization header' });
+    }
+    next();
+});
+
 // GET /api/users/me
 usersRouter.get('/me', requireUser, async (req, res, next) => {
     const prefix = 'Bearer '

@@ -5,6 +5,7 @@ const Products = ({ products, token }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState(products);
 
+
   console.log('filter products', filteredProducts);
 
   const handleSearchSubmit = (event) => {
@@ -26,6 +27,22 @@ const Products = ({ products, token }) => {
   const handleSearchChange = (event) => {
     event.preventDefault();
     setSearchQuery(event.target.value);
+  console.log("products prop", products);
+
+  async function addToCart(id, qty) {
+    const newCartProduct = {
+      productId: id,
+      qty
+    };
+    const result = await addProductToCart(newCartProduct);
+    if (result.error) {
+      console.error(result.error);
+    } else {
+      setSuccessMessage('Car added to cart');
+      setTimeout(() => {
+        setSuccessMessage('');
+      }, 2000);
+    }
   }
 
 
@@ -95,14 +112,22 @@ const Products = ({ products, token }) => {
              <li className="list-group-item" id="inv">Inventory: {product.inventory}</li>
            </ul>
             </div>
-             <button href="#" className="cardbtn">
-              ADD TO CART
+          
+           <div className="card-body">
+           
+             <button href="#" className="cardbtn" onClick= {event => {
+              event.preventDefault();
+              window.alert("You have successfully added this item to the cart.")
+              addToCart();
+             }}>
+               ADD TO CART
              </button>
     
           
            </div>
          </div>
-        ))}
+        )
+        )}
       </div>
     </div>
       
