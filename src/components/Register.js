@@ -26,42 +26,38 @@ const RegisterUser = () => {
   };
 
   return (
-    <div id="registerPage">
-      <br />
-      <br />
-      <br />
-      <br />
-      <h2>Create New User</h2>
-
-      <form className="username-box" onSubmit={handleRegisterClick}>
-        <label htmlFor="username">Username: </label>
+    <div className="loginwindow">
+    <div className="logindiv">
+      <div>
+     <h1 className="logintitle">Create Account</h1>
+     <br />
+      <form className="loginform" onSubmit={handleRegisterClick}>
+        <label className="userlog">Username: </label>
         <input
           type="text"
-          className="RegisterBox"
+          className="username"
           id="username"
           placeholder="Username"
           value={username}
           onChange={handleUserChange}
         />
         <br />
-        <br />
-        <label htmlFor="password">Password: </label>
+        <label className="passlog">Password: </label>
         <input
           type="password"
-          className="RegisterBox"
+          className="password"
           placeholder="Password"
           id="password"
           value={password}
           onChange={handlePasswordChange}
         />
+        <Link to="/login"> Have an account? Click here to login</Link>
         <br />
         <br />
-        <button>Register</button>
+        <button className="logbtn">Register</button>
       </form>
-      <h4>Already have an account with us?</h4>
-      <button>
-        <Link to="/login"> Click here to login</Link>
-      </button>
+      </div>
+    </div>
     </div>
   );
 };

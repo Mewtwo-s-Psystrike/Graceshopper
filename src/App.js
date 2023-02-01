@@ -82,7 +82,7 @@ const App = () => {
       </div>
 
       <Routes>
-        <Route exact path="/" element={<Home />} />
+        <Route exact path="/" element={<Home token={token}/>} />
         <Route path="/products" element={<Products products={products} />} />
         <Route path="/cart" element={<Cart />} />
         <Route

@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { Link, Routes, Route } from "react-router-dom";
-import { addProductToCart, deleteProduct } from '../api/api';
-
+import home from "../images/home.jpg";
 
 const Products = ({ products, token }) => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -63,6 +61,7 @@ const Products = ({ products, token }) => {
 
   return (
     <>
+    <img src={home} alt="Concept" className="home"/>
     <form onSubmit={handleSearchSubmit} className="searchForm">
     <input
         type="text"

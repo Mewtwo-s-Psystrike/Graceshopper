@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {loginUser} from "../api/api";
 import { Link } from "react-router-dom";
 
+
 const Login = ({setToken}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -38,10 +39,11 @@ const Login = ({setToken}) => {
     }
   }
   return (
+    <>
     <div className="loginwindow">
       <div className="logindiv">
         <div>
-          <h1 className="logintitle">Account</h1>
+          <h1 className="logintitle">Sign In</h1>
           <form onSubmit={handleSubmit} className="loginform">
             <label className="userlog">Username</label>
             <br />
@@ -75,6 +77,7 @@ const Login = ({setToken}) => {
           </Link>
       </div>
     </div>
+    </>
   );
 };
 
