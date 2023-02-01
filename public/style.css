@@ -357,6 +357,19 @@ a:visited {
   background-color: #45a049;
 }
 
+.modal{
+  display: flex;
+  margin: 20rem 35rem;
+  width: 20vw;
+  height: 15vw;
+  position: absolute;
+  background-color: black;
+  color: white;
+  align-items: center;
+  justify-content: center;
+
+  }
+
 .flexwrap {
   display: flex;
   flex-wrap: wrap;

@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import home from "../images/home.jpg";
 
-const Products = ({ products, token }) => {
+const Products = ({ products, cart, setCart }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState(products);
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   console.log('filter products', filteredProducts);
+  console.log('cart--->', cart);
+
+  const addToCart = (product) => {
+    setCart([...cart, product]);
+    setIsModalOpen(true);
+  };
+
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
@@ -22,62 +30,32 @@ const Products = ({ products, token }) => {
       product.inventory.toString().includes(searchQuery)
       )
     );
+
   };
 
-  const handleSearchChange = (event) => {
-    event.preventDefault();
-    setSearchQuery(event.target.value);
-  console.log("products prop", products);
 
-  async function addToCart(id, qty) {
-    const newCartProduct = {
-      productId: id,
-      qty
-    };
-    const result = await addProductToCart(newCartProduct);
-    if (result.error) {
-      console.error(result.error);
-    } else {
-      setSuccessMessage('Car added to cart');
-      setTimeout(() => {
-        setSuccessMessage('');
-      }, 2000);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("cart"));
+    if (storedCart) {
+      setCart(storedCart);
     }
-  }
-
-
-  // async function addToCart(id, qty) {
-  //   const newCartProduct = {
-  //     productId: id,
-  //     qty
-  //   };
-  //   const result = await addProductToCart(newCartProduct);
-  //   if (result.error) {
-  //     console.error(result.error);
-  //   } else {
-  //     setSuccessMessage('Car added to cart');
-  //     setTimeout(() => {
-  //       setSuccessMessage('');
-  //     }, 2000);
-  //   }
-  // }
-
-  
-  // async function handleDelete() {
-  //   const result = await deleteProduct(jwt, id);
-  //   if (result) {
-  //     setSuccessMessage('Product Deleted!');
-  //     setErrorMessage('');
-  //     setTimeout(() => {
-  //       closeModal();     
-  //     }, 1000);
-  //   } else {
-  //     setErrorMessage('');
-  //   }
-  // };
+  }, []);
 
   return (
     <>
+     {isModalOpen && (
+        <div className="modal">
+          <p className="pop">Your vehicle is in your cart</p>
+          <Link to="/cart">Continue to Cart</Link>
+          <button onClick={() => setIsModalOpen(false)} className="continue">Close</button>
+        </div>
+      )}
+
     <img src={home} alt="Concept" className="home"/>
     <form onSubmit={handleSearchSubmit} className="searchForm">
     <input
@@ -85,7 +63,7 @@ const Products = ({ products, token }) => {
         placeholder="Search by year, make, model, and color"
         className="searchinput"
         value={searchQuery}
-        onChange={handleSearchChange}
+        onChange={handleSearchSubmit}
       />
       <button type="submit" className="searchbtn">Search</button>
     </form>
@@ -112,22 +90,14 @@ const Products = ({ products, token }) => {
              <li className="list-group-item" id="inv">Inventory: {product.inventory}</li>
            </ul>
             </div>
-          
-           <div className="card-body">
-           
-             <button href="#" className="cardbtn" onClick= {event => {
-              event.preventDefault();
-              window.alert("You have successfully added this item to the cart.")
-              addToCart();
-             }}>
-               ADD TO CART
+             <button href="#" className="cardbtn" onClick={() => addToCart(product)}>
+              ADD TO CART
              </button>
     
           
            </div>
          </div>
-        )
-        )}
+        ))}
       </div>
     </div>
       
