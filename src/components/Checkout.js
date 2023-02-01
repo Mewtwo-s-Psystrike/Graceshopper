@@ -1,61 +1,34 @@
 import React from "react";
-import { useState } from "react";
 import { deleteCartProduct } from "../api/api";
 
 const Checkout = () => {
 
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        address: "",
-        city: "",
-        state: "",
-        zip: "",
-        cardname: "",
-        cardnumber: "",
-        expmonth: "",
-        cvv: ""
-      });
-
-      const inputRefs = {};
-
-      const inputChangeHandler = event => {
-        setFormData({ ...formData, [event.target.name]: event.target.value });
-      };
-
+ 
   const submitHandler = async (event) => {
     event.preventDefault();
-    const formData = Object.entries(inputRefs).reduce((acc, [key, ref]) => {
-      acc[key] = ref.current.value;
-      return acc;
-    }, {});
-    setFormData(formData);
   };
 
-  console.log('inputRefs --->', inputRefs);
   return (
     <>
       <div className="checkoutRow">
         <div className="checkoutColumn">
           <div className="checkoutContainer">
-          <form onSubmit={submitHandler}>
+            <form>
               <div className="checkoutRow">
                 <div className="checkoutColumn-1">
                   <h3>Billing Address</h3>
-                  <label className="checkoutLabel">
-                    <i className="fa fa-user"></i> Full Name
+                  <label classname="checkoutLabel" for="fname">
+                    <i class="fa fa-user"></i> Full Name
                   </label>
                   <input
                     type="text"
                     id="fname"
-                    name="name"
+                    name="firstname"
                     placeholder="type in your full name"
                     className="checkin"
-                    onChange={inputChangeHandler}
-                    value={formData.name}
                   ></input>
-                  <label className="checkoutLabel">
-                    <i className="fa fa-envelope"></i> Email
+                  <label classname="checkoutLabel" for="email">
+                    <i class="fa fa-envelope"></i> Email
                   </label>
                   <input
                     type="text"
@@ -63,11 +36,9 @@ const Checkout = () => {
                     name="email"
                     placeholder="type in your email"
                     className="checkin"
-                    onChange={inputChangeHandler}
-                    value={formData.email}
                   ></input>
-                  <label className="checkoutLabel">
-                    <i className="fa fa-address-card-o"></i> Address
+                  <label classname="checkoutLabel" for="adr">
+                    <i class="fa fa-address-card-o"></i> Address
                   </label>
                   <input
                     type="text"
@@ -75,11 +46,9 @@ const Checkout = () => {
                     name="address"
                     placeholder="type in your street address"
                     className="checkin"
-                    onChange={inputChangeHandler}
-                    value={formData.address}
                   ></input>
-                  <label className="checkoutLabel">
-                    <i className="fa fa-institution"></i> City
+                  <label classname="checkoutLabel" for="city">
+                    <i class="fa fa-institution"></i> City
                   </label>
                   <input
                     type="text"
@@ -87,13 +56,11 @@ const Checkout = () => {
                     name="city"
                     placeholder="type in your city"
                     className="checkin"
-                    onChange={inputChangeHandler}
-                    value={formData.city}
                   ></input>
 
                   <div className="checkoutRow">
                     <div className="checkoutColumn-1">
-                      <label className="checkoutLabel">
+                      <label classname="checkoutLabel" for="state">
                         State
                       </label>
                       <input
@@ -102,12 +69,10 @@ const Checkout = () => {
                         name="state"
                         placeholder="type in your state"
                         className="checkin"
-                        onChange={inputChangeHandler}
-                        value={formData.state}
                       ></input>
                     </div>
                     <div className="checkoutColumn-1">
-                      <label className="checkoutLabel">
+                      <label classname="checkoutLabel" for="zip">
                         Zip
                       </label>
                       <input
@@ -116,8 +81,6 @@ const Checkout = () => {
                         name="zip"
                         placeholder="type in your zip code"
                         className="checkin"
-                        onChange={inputChangeHandler}
-                        value={formData.zip}
                       ></input>
                     </div>
                   </div>
@@ -125,7 +88,7 @@ const Checkout = () => {
 
                 <div className="checkoutColumn-1">
                   <h3>Payment</h3>
-                  <label className="checkoutLabel">
+                  <label classname="checkoutLabel" for="cname">
                     Name on Card
                   </label>
                   <input
@@ -134,10 +97,8 @@ const Checkout = () => {
                     name="cardname"
                     placeholder="type in cardholder's name"
                     className="checkin"
-                    onChange={inputChangeHandler}
-                    value={formData.cardname}
                   ></input>
-                  <label className="checkoutLabel">
+                  <label classname="checkoutLabel" for="ccnum">
                     Credit card number
                   </label>
                   <input
@@ -146,10 +107,8 @@ const Checkout = () => {
                     name="cardnumber"
                     placeholder="type in the card number"
                     className="checkin"
-                    onChange={inputChangeHandler}
-                    value={formData.cardnumber}
                   ></input>
-                  <label className="checkoutLabel" >
+                  <label classname="checkoutLabel" for="expmonth">
                     Expiration Date
                   </label>
                   <input
@@ -158,10 +117,8 @@ const Checkout = () => {
                     name="expmonth"
                     placeholder="MM/YY"
                     className="checkin"
-                    onChange={inputChangeHandler}
-                    value={formData.expmonth}
                   ></input>
-                  <label className="checkoutLabel" >
+                  <label classname="checkoutLabel" for="cvv">
                     CVV
                   </label>
                   <input
@@ -174,13 +131,13 @@ const Checkout = () => {
                 </div>
 
                 <div className="checkoutBtm">
-                  
-                    <button
+                  <form onSubmit={submitHandler}>
+                    <input
                       type="submit"
                       value="Continue to checkout"
-                      className="btn"
-                    >Continue to Checkout</button>
-          
+                      class="btn"
+                    ></input>
+                  </form>
                 </div>
               </div>
             </form>
