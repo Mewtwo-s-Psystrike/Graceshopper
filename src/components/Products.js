@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import home from "../images/home.jpg";
+
 
 const Products = ({ products, cart, setCart }) => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -49,14 +49,25 @@ const Products = ({ products, cart, setCart }) => {
   return (
     <>
      {isModalOpen && (
+      <div className="modal-container">
         <div className="modal">
-          <p className="pop">Your vehicle is in your cart</p>
-          <Link to="/cart">Continue to Cart</Link>
-          <button onClick={() => setIsModalOpen(false)} className="continue">Close</button>
-        </div>
+           <div className="modal-header">
+             <h5 className="modal-title">THANK YOU</h5>
+           </div>
+           <div className="modal-body">
+             <p>Your Tesla has been added to your cart!</p>
+           </div>
+           <div className="modal-footer">
+             <button type="button" className="modalbtn"><Link to="/cart">Go to Cart</Link></button>
+             <button type="button" className="modalbtn" onClick={() => setIsModalOpen(false)}>Continue Shopping</button>
+           </div>
+     </div>
+      </div>
+       
       )}
 
-    <img src={home} alt="Concept" className="home"/>
+
+
     <form onSubmit={handleSearchSubmit} className="searchForm">
     <input
         type="text"

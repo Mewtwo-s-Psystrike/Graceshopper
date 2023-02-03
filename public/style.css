@@ -357,20 +357,70 @@ a:visited {
   background-color: #45a049;
 }
 
+/* Modal Pop Up */
+
+.modal-container{
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  background-color: rgb(0, 0, 0, 0.2);
+  z-index: 2;
+  font-family: "Montserrat", sans-serif;
+  text-decoration: none;
+}
+
 .modal{
   display: flex;
-  margin: 20rem 35rem;
-  width: 20vw;
-  height: 15vw;
-  position: absolute;
-  background-color: black;
-  color: white;
+  height: 30vh;
+  width: 40vw;
   align-items: center;
   justify-content: center;
-
+  flex-direction: column;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  font-weight: bolder;
+  top: 33%;
+  font-family: "Montserrat", sans-serif;
+  left: 50%;
+  transform: translate(-50%, 0);
   }
 
-.flexwrap {
+  .modalbtn{
+    display: flex;
+    width: 38vw;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    font-family: "Montserrat", sans-serif;
+    background-color: #000000;
+    color: white;
+    font-size: 1.4rem;
+  }
+
+  .modalbtn:hover{
+    color: rgb(186, 0, 0);
+  }
+  /* cart css*/
+  
+  .cartdiv{
+    display: flex;
+    width: 80vw;
+    height: 80vh;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    overflow: scroll;
+  }
+
+  .cartimg{
+    display: flex;
+    height: 30vh;
+    width: 40vw;
+    object-fit: contain;
+  }
+
+
+  .flexwrap {
   display: flex;
   flex-wrap: wrap;
   width: 100vw;
@@ -425,6 +475,39 @@ a:visited {
     justify-content: space-evenly;
     margin: 2rem 0rem 0rem 2rem;
   }
+  .modal-container{
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    background-color: rgb(0, 0, 0, 0.2);
+    z-index: 2;
+    text-decoration: none;
+  }
+  
+  .modal{
+    display: flex;
+    height: 40vh;
+    width: 50vw;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+    top: 33%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    }
+  
+    .modalbtn{
+      display: flex;
+      width: 47vw;
+      align-items: center;
+      justify-content: center;
+      border: none;
+    }
 
   .graceautos {
     display: flex;
