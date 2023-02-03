@@ -78,6 +78,7 @@ a:visited {
   position: absolute;
   margin-top: 10rem;
   font-size: 1.3rem;
+  color: black;
   font-style: italic;
   font-family: "Montserrat", sans-serif;
 }
@@ -88,6 +89,7 @@ a:visited {
   justify-content: center;
   position: absolute;
   margin-top: 8rem;
+  color: black;
   font-size: 1.3rem;
   font-style: italic;
   font-family: "Montserrat", sans-serif;
