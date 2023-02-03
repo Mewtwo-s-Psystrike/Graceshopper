@@ -402,7 +402,15 @@ a:visited {
     color: rgb(186, 0, 0);
   }
   /* cart css*/
-  
+  /* cart page*/
+.cart{
+  display: flex;
+  width: 82vw;
+  margin-top: 5rem;
+  border: 1px black solid;
+  padding: 1rem 1rem 1rem 0rem;
+  align-items: center;
+}
   .cartdiv{
     display: flex;
     width: 80vw;
@@ -414,10 +422,36 @@ a:visited {
 
   .cartimg{
     display: flex;
-    height: 30vh;
-    width: 40vw;
+    height: 20vh;
+    width: 30vw;
     object-fit: contain;
+    margin-right: 1rem;
   }
+
+  .carttitle{
+    margin-bottom: 1rem;
+  }
+
+  .floatleft{
+    display: flex;
+    float: left;
+    width: 82vw;
+    height: 100vh;
+    flex-direction: column;
+    overflow: scroll;
+  }
+
+  .floatright{
+    display: flex;
+    float: right;
+    height: 100vh;
+    width: 18vw;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    padding: 1rem;
+  }
+
 
 
   .flexwrap {
