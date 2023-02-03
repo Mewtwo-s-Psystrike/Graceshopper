@@ -82,6 +82,17 @@ a:visited {
   font-family: "Montserrat", sans-serif;
 }
 
+.slogan2 {
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+  position: absolute;
+  margin-top: 8rem;
+  font-size: 1.3rem;
+  font-style: italic;
+  font-family: "Montserrat", sans-serif;
+}
+
 .browsebtnl {
   display: flex;
   align-items: center;
