@@ -178,9 +178,6 @@ export const getCart = async (jwt) => {
  export const loginUser = async (username, password) => {
     const headers = createHeaders();
     try {
-        // if(!user){
-        //     throw new Error ("Error logging in. Please check your username and password and try again1")
-        // }
         const response = await fetch(`${baseURL}/users/login`,{
         method: "POST",
         headers: headers,
