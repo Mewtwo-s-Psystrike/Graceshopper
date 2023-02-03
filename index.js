@@ -1,4 +1,5 @@
 require('dotenv').config();
+const path = require('path');
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
@@ -11,9 +12,10 @@ app.use(express.json());
 
 app.use('/api', router);
 
-app.use('*', (req, res) => {
-  res.send('not found')
-} )
+app.use(express.static(path.join(__dirname, 'build')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'))
+})
 
 app.use((err, req, res, next) => {
     console.error('500 error', err);
