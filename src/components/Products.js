@@ -1,14 +1,20 @@
-import React, { useState } from "react";
-import { Link, Routes, Route } from "react-router-dom";
-import { addProductToCart, deleteProduct } from '../api/api';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 
-const Products = ({ products, token }) => {
+const Products = ({ products, cart, setCart }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState(products);
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   console.log('filter products', filteredProducts);
+  console.log('cart--->', cart);
+
+  const addToCart = (product) => {
+    setCart([...cart, product]);
+    setIsModalOpen(true);
+  };
+
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
@@ -18,59 +24,59 @@ const Products = ({ products, token }) => {
       product.year.toLowerCase().includes(searchQuery.toLowerCase()) ||
       product.make.toLowerCase().includes(searchQuery.toLowerCase()) ||
       product.model.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      product.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       product.price.toString().includes(searchQuery) ||
       product.odometer.toString().includes(searchQuery) ||
       product.color.toLowerCase().includes(searchQuery.toLowerCase()) ||
       product.inventory.toString().includes(searchQuery)
       )
     );
+
   };
 
-  const handleSearchChange = (event) => {
-    setSearchQuery(event.target.value);
-  console.log("products prop", products);}
 
-  async function addToCart(id, qty) {
-    const newCartProduct = {
-      productId: id,
-      qty
-    };
-    const result = await addProductToCart(token, newCartProduct);
-    if (result.error) {
-      console.error(result.error);
-    } else {
-      setSuccessMessage('Car added to cart');
-      setTimeout(() => {
-        setSuccessMessage('');
-      }, 2000);
-    }
-  }
 
-  
-  async function handleDelete() {
-    const result = await deleteProduct(jwt, id);
-    if (result) {
-      setSuccessMessage('Product Deleted!');
-      setErrorMessage('');
-      setTimeout(() => {
-        closeModal();     
-      }, 1000);
-    } else {
-      setErrorMessage('');
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("cart"));
+    if (storedCart) {
+      setCart(storedCart);
     }
-  };
+  }, []);
 
   return (
     <>
+     {isModalOpen && (
+      <div className="modal-container">
+        <div className="modal">
+           <div className="modal-header">
+             <h5 className="modal-title">THANK YOU</h5>
+           </div>
+           <div className="modal-body">
+             <p>Your Tesla has been added to your cart!</p>
+           </div>
+           <div className="modal-footer">
+             <button type="button" className="modalbtn"><Link to="/cart">Go to Cart</Link></button>
+             <button type="button" className="modalbtn" onClick={() => setIsModalOpen(false)}>Continue Shopping</button>
+           </div>
+     </div>
+      </div>
+       
+      )}
+
+
+
     <form onSubmit={handleSearchSubmit} className="searchForm">
     <input
         type="text"
-        placeholder="Search for a product"
+        placeholder="Search by year, make, model, and color"
+        className="searchinput"
         value={searchQuery}
-        onChange={handleSearchChange}
+        onChange={handleSearchSubmit}
       />
-      <button type="submit">Search</button>
+      <button type="submit" className="searchbtn">Search</button>
     </form>
     <div className="flexwrap">
     <div className="carddiv">
@@ -92,30 +98,23 @@ const Products = ({ products, token }) => {
              <li className="list-group-item">Price USD: {product.price}</li>
              <li className="list-group-item">Odometer: {product.odometer}</li>
              <li className="list-group-item">Color: {product.color}</li>
-             <li className="list-group-item">Inventory: {product.inventory}</li>
+             <li className="list-group-item" id="inv">Inventory: {product.inventory}</li>
            </ul>
             </div>
-          
-           <div className="card-body">
-           
-             <button href="#" className="cardbtn" onClick= {event => {
-              event.preventDefault();
-              window.alert("You have successfully added this item to the cart.")
-              addToCart();
-             }}>
-               ADD TO CART
+             <button href="#" className="cardbtn" onClick={() => addToCart(product)}>
+              ADD TO CART
              </button>
-          </div>
+    
           
            </div>
          </div>
-        )
-        )}
+        ))}
       </div>
     </div>
       
     </>
   );
 };
+
 
 export default Products;

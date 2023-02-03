@@ -8,6 +8,7 @@ async function getCart(userId) {
          WHERE "cartId"=$1;`, [userId]
       );
   
+      console.log('product ---->', product);
       return product
     } catch (error) {
       console.error(error)
@@ -25,6 +26,8 @@ async function getCart(userId) {
         RETURNING *;
       `, [productId, qty]
       );
+
+      console.log('create cart_product ---->', cart_product);
       return cart_product;
     } catch (error) {
       console.error(error);
@@ -43,7 +46,9 @@ async function getCart(userId) {
         RETURNING *;`,
         [cartId, productId, qty]
       );
-  
+
+
+      console.log('add product to cart --->', cart_product);
       return cart_product;
     } catch (error) {
       console.error(error);
@@ -79,6 +84,8 @@ async function getCart(userId) {
         WHERE "productId"=${id}
         and "cartId"=${userId}
         RETURNING *;`);
+
+        console.log('delete cart_product', cart_product);
       return cart_product;
     } catch (error) {
       console.error(error);
@@ -103,6 +110,8 @@ async function getCart(userId) {
         RETURNING *;`,
         Object.values(fields)
       );
+
+      console.log('update cart_product---->', cart_product);
       return cart_product;
     } catch (error) {
       console.error(error);
@@ -118,3 +127,5 @@ async function getCart(userId) {
     deleteCartProduct,
     updateCartProduct
   };
+
+  

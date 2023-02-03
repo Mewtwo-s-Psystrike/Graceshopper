@@ -86,7 +86,7 @@ async function createInitialProducts() {
       const productsToCreate = [
         {
           title: "2023 Tesla Model S Plaid",
-          imageurl: "https://cdn.motor1.com/images/mgl/VR6Al/s1/4x3/tesla-model-s-plaid-blue.webp",
+          imageurl: "https://static1.hotcarsimages.com/wordpress/wp-content/uploads/2022/11/0x0-ModelS_03.jpg",
           year: "2023",
           make: "Tesla",
           model: "Model S Plaid",
@@ -96,10 +96,6 @@ async function createInitialProducts() {
           price: "$114,990",
           inventory: "Available",
       },
-      {
-          title: "2023 Tesla Model Y",
-
-        },
         {
           title: "2023 Tesla Model Y Long Range",
           imageurl: "https://cdn.motor1.com/images/mgl/pPoyY/s1/tesla-model-y-white-driving.jpg",
@@ -130,6 +126,7 @@ async function createInitialProducts() {
           year: "2023",
           make: "Tesla",
           model: "Model X Plaid",
+          odometer: "1,562",
           description: "With the most power and quickest acceleration of any SUV, Model X Plaid is the highest performing SUV ever built. Updated battery architecture enables both Long Range and Plaid configurations to complete back-to-back track runs without performance degradation. With an estimated range of 348 miles on the Standard Model X, you can enjoy driving long distances while still having extra cargo space.",
           color: "Grey",
           price: "$109,990",
@@ -141,6 +138,7 @@ async function createInitialProducts() {
           year: "2023",
           make: "Tesla",
           model: "Model 3 Performance",
+          odometer: "2,562",
           description: "Model 3 Performance comes with dual motor all-wheel drive, 20” Überturbine Wheels and Performance Brakes for total control in all weather conditions. A carbon fiber spoiler improves stability at high speeds, all allowing Model 3 to accelerate from 0-60 mph* in as little as 3.1 seconds while still being able to get 315miles out of a single charge.",
           color: "Red",
           price: "$53,990",
@@ -148,18 +146,16 @@ async function createInitialProducts() {
         },
         {
           title: "2023 Tesla Model 3 Rear-Wheel Drive",
-          imageurl: "https://www.moveelectric.com/sites/default/files/users/user123746/tesla-model-3-202120210906_4124-1600x1067-4a71cd1e-9183-4b60-a856-a626f910ef67.jpg",
+          imageurl: "https://hips.hearstapps.com/hmg-prod/images/2022-tesla-model-3-mmp-1-1640025520.jpg",
           year: "2023",
           make: "Tesla",
           model: "Model 3 Rear-Wheel Drive",
+          odometer: "4,511",
           description: "The Model 3 Rear-Wheel Drive is the lowest priced Tesla that you can get while still being able to get 272miles of range on a single charge and with a 0-60mph of 5.8sec. The Model 3 Rear-Wheel Drive is a great budget car for someone that wants to drive an electric vehicle without needing the premium options.",
           color: "Blue",
           price: "$43,990",
           inventory: "Available",
     },
-    
-        },
-
   ]
 
    const products = await Promise.all (
