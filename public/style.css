@@ -568,6 +568,7 @@ a:visited {
 /* <----- check out page ----> */
 
 .checkoutRow {
+
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
