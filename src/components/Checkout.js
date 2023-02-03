@@ -5,6 +5,8 @@ const Checkout = ({cart}) => {
 
     const submitHandler = async (event) => {
         event.preventDefault();
+        window.alert("You have successfullypurchased your vehicle, now redirecting back to the home page.")
+        window.location.assign("/");
     }
 
     return(
