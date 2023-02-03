@@ -33,7 +33,7 @@ const Login = ({setToken}) => {
       window.alert("You have successfully signed in! Now redirecting to home page...")
       window.location.assign("/");
     } catch (error) {
-      window.alert("Error logging in. Please check your username and password and try again.3");
+      window.alert("Error logging in. Please check your username and password and try again.");
       console.error('handle submit', error);
       throw error
     }

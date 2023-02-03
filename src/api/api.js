@@ -194,7 +194,7 @@ export const getCart = async (jwt) => {
       const result = await response.json();
       console.log('login user result', result);
       if (!response.ok) {
-        throw new Error("Error logging in. Please check your username and password and try again.2");
+        throw new Error("Error logging in. Please check your username and password and try again.");
       }
       return result;
     } catch(ex) {
